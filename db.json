@@ -1,0 +1,618 @@
+{
+  "livraisons": [
+    {
+      "id": "1",
+      "receiverName": "John Doe",
+      "deliveryDate": "2024-10-15",
+      "status": "Delivered",
+      "address": "123 Main St, City A",
+      "weight": "2kg"
+    },
+    {
+      "id": "2",
+      "receiverName": "Jane Smith",
+      "deliveryDate": "2024-10-16",
+      "status": "In Transit",
+      "address": "456 Oak St, City B",
+      "weight": "5kg"
+    }
+  ],
+  "annonces": [
+    {
+      "id": "1",
+      "title": "House for Rent",
+      "description": "Spacious 3-bedroom house available for rent in City A.",
+      "price": 1200,
+      "contactEmail": "owner@example.com",
+      "postedDate": "2024-10-10"
+    },
+    {
+      "id": "2",
+      "title": "Car for Sale",
+      "description": "2019 model, in excellent condition. 30,000 miles.",
+      "price": 15000,
+      "contactEmail": "seller@example.com",
+      "postedDate": "2024-09-28"
+    }
+  ],
+  "trajets": [
+    {
+      "id": "1",
+      "startLocation": "City A",
+      "endLocation": "City B",
+      "departureTime": "2024-10-15T08:00:00",
+      "arrivalTime": "2024-10-15T12:00:00",
+      "driver": "Alex Turner",
+      "vehicle": "Truck"
+    },
+    {
+      "id": "2",
+      "startLocation": "City C",
+      "endLocation": "City D",
+      "departureTime": "2024-10-16T09:00:00",
+      "arrivalTime": "2024-10-16T13:30:00",
+      "driver": "Emma Stone",
+      "vehicle": "Van"
+    }
+  ],
+  "AddressesBook": [
+    {
+      "adresse_ligne_1": "123 Rue de la Paix",
+      "ville": "Paris",
+      "code_postal": "75001",
+      "pays": "France",
+      "id": "bfdf"
+    },
+    {
+      "adresse_ligne_1": "456 Avenue des Champs-Élysées",
+      "ville": "Paris",
+      "code_postal": "75008",
+      "pays": "France",
+      "id": "0e8b"
+    }
+  ],
+  "cards": [
+    {
+      "id": "2933",
+      "titulaire": "John Doe",
+      "iban": "FR7630006000011234567890189",
+      "adresse": "123 Rue de Paris",
+      "complementAdresse": "Apartment 4B",
+      "codePostal": "75000",
+      "ville": "Paris"
+    }
+  ],
+  "wallet": [
+    {
+      "id": "a4db",
+      "walletName": "My Savings Wallet",
+      "walletId": "WAL123456789"
+    }
+  ],
+  "Announcements": [
+    {
+      "id": "703f",
+      "cartItems": [
+        {
+          "id": 1,
+          "image": "",
+          "qty": 1,
+          "objet": "tableau",
+          "showExactDimensions": false,
+          "dimensions": {
+            "length": "",
+            "width": "",
+            "height": ""
+          },
+          "format": "-5Kg",
+          "poids": "30 à 50 kg",
+          "information": "carton"
+        }
+      ],
+      "removalDetails": {
+        "adresse": "avenue beyrem tounsi,moknine, monastir",
+        "typeEnlevement": " Au pied du véhicule  ",
+        "etage": "",
+        "acces": "",
+        "prenom": "",
+        "nom": "",
+        "telephone": "",
+        "instructions": ""
+      },
+      "deliveryDetails": {
+        "adresse": "123 Rue de Paris",
+        "typeEnlevement": " Au pied du véhicule  ",
+        "etage": "",
+        "acces": "",
+        "prenom": "",
+        "nom": "",
+        "telephone": "",
+        "instructions": ""
+      },
+      "priceProposal": "222",
+      "totalPrice": 222
+    },
+    {
+      "id": "3620",
+      "cartItems": [
+        {
+          "id": 1,
+          "image": "",
+          "qty": 1,
+          "objet": "tableau",
+          "showExactDimensions": false,
+          "dimensions": {
+            "length": "",
+            "width": "",
+            "height": ""
+          },
+          "format": "-5Kg",
+          "poids": "30 à 50 kg",
+          "information": "carton"
+        }
+      ],
+      "removalDetails": {
+        "adresse": "avenue beyrem tounsi,moknine, monastir",
+        "typeEnlevement": " Au pied du véhicule  ",
+        "etage": "",
+        "acces": "",
+        "prenom": "",
+        "nom": "",
+        "telephone": "",
+        "instructions": ""
+      },
+      "deliveryDetails": {
+        "adresse": "123 Rue de Paris",
+        "typeEnlevement": " Au pied du véhicule  ",
+        "etage": "",
+        "acces": "",
+        "prenom": "",
+        "nom": "",
+        "telephone": "",
+        "instructions": ""
+      },
+      "priceProposal": "222",
+      "totalPrice": 222
+    },
+    {
+      "id": "9a47",
+      "cartItems": [
+        {
+          "id": 1,
+          "image": "",
+          "qty": 1,
+          "objet": "TABLEAU",
+          "showExactDimensions": false,
+          "dimensions": {
+            "length": "",
+            "width": "",
+            "height": ""
+          },
+          "format": "5 à 30 kg",
+          "poids": "",
+          "information": "CARTON"
+        }
+      ],
+      "removalDetails": {
+        "adresse": "avenue beyrem tounsi,moknine, monastir",
+        "typeEnlevement": " Au pied du véhicule  ",
+        "etage": "",
+        "acces": "",
+        "prenom": "",
+        "nom": "",
+        "telephone": "",
+        "instructions": ""
+      },
+      "deliveryDetails": {
+        "adresse": "avenue beyrem tounsi,moknine, monastir",
+        "typeEnlevement": " Au pied du véhicule  ",
+        "etage": "",
+        "acces": "",
+        "prenom": "saber",
+        "nom": "mgannem",
+        "telephone": "58178242",
+        "instructions": "BON ETAT"
+      },
+      "priceProposal": "55",
+      "totalPrice": 60
+    },
+    {
+      "id": "07e1",
+      "cartItems": [
+        {
+          "id": 1,
+          "image": "",
+          "qty": 1,
+          "objet": "",
+          "showExactDimensions": false,
+          "dimensions": {
+            "length": "",
+            "width": "",
+            "height": ""
+          },
+          "format": "",
+          "poids": "",
+          "information": ""
+        }
+      ],
+      "removalDetails": {
+        "adresse": "",
+        "typeEnlevement": "",
+        "etage": "",
+        "acces": "",
+        "prenom": "",
+        "nom": "",
+        "telephone": "",
+        "instructions": ""
+      },
+      "deliveryDetails": {
+        "adresse": "",
+        "typeEnlevement": "",
+        "etage": "",
+        "acces": "",
+        "prenom": "",
+        "nom": "",
+        "telephone": "",
+        "instructions": ""
+      },
+      "priceProposal": "",
+      "totalPrice": 0
+    },
+    {
+      "id": "3ded",
+      "cartItems": [
+        {
+          "id": 1,
+          "image": "",
+          "qty": 1,
+          "objet": "",
+          "showExactDimensions": true,
+          "dimensions": {
+            "length": "",
+            "width": "",
+            "height": ""
+          },
+          "format": "",
+          "poids": "",
+          "information": ""
+        }
+      ],
+      "removalDetails": {
+        "adresse": "",
+        "typeEnlevement": "",
+        "etage": "",
+        "acces": "",
+        "prenom": "",
+        "nom": "",
+        "telephone": "",
+        "instructions": ""
+      },
+      "deliveryDetails": {
+        "adresse": "",
+        "typeEnlevement": "",
+        "etage": "",
+        "acces": "",
+        "prenom": "",
+        "nom": "",
+        "telephone": "",
+        "instructions": ""
+      },
+      "priceProposal": "",
+      "totalPrice": 0
+    },
+    {
+      "id": "29c7",
+      "cartItems": [
+        {
+          "id": 0,
+          "image": "",
+          "qty": 1,
+          "objet": "",
+          "showExactDimensions": false,
+          "dimensions": {
+            "length": "",
+            "width": "",
+            "height": ""
+          },
+          "format": "",
+          "poids": "",
+          "information": ""
+        }
+      ],
+      "removalDetails": {
+        "adresse": "",
+        "typeEnlevement": "",
+        "etage": "",
+        "acces": "",
+        "prenom": "",
+        "nom": "",
+        "telephone": "",
+        "instructions": ""
+      },
+      "deliveryDetails": {
+        "adresse": "",
+        "typeEnlevement": "",
+        "etage": "",
+        "acces": "",
+        "prenom": "",
+        "nom": "",
+        "telephone": "",
+        "instructions": ""
+      },
+      "priceProposal": "",
+      "totalPrice": 0
+    }
+  ],
+  "VerificationPhone": [
+    {
+      "id": "29f8",
+      "PhoneNbr": "58 178242"
+    },
+    {
+      "id": "25c8",
+      "PhoneNbr": "58 178242"
+    }
+  ],
+  "VerificationMail": [
+    {
+      "id": "0182",
+      "CodeMail": "4545"
+    },
+    {
+      "id": "a01e",
+      "CodeMail": "4545"
+    },
+    {
+      "id": "2bb4",
+      "CodeMail": "4545"
+    }
+  ],
+  "UpdatePassword": [
+    {
+      "id": "da95",
+      "currentPassword": "saber123",
+      "newPassword": "sabersaber123",
+      "vefifiedPassword": "sabersaber123"
+    }
+  ],
+  "FAQ": [
+    {
+      "id": "1",
+      "question": "When will my order arrive?",
+      "answer": "Shipping time is set by our delivery partners, according to the delivery method chosen by you. Additional details can be found in the order confirmation."
+    },
+    {
+      "id": "2",
+      "question": "How can I track my order?",
+      "answer": "You can track your order using the tracking number provided in the confirmation email or by visiting the order tracking page."
+    },
+    {
+      "id": "3",
+      "question": "Can I cancel my order?",
+      "answer": "Yes, you can cancel your order before it is dispatched. Once dispatched, the cancellation policy depends on the seller."
+    },
+    {
+      "id": "4",
+      "question": "What are the available payment methods?",
+      "answer": "We accept various payment methods, including credit cards, debit cards, and online payment gateways like PayPal."
+    },
+    {
+      "id": "5",
+      "question": "How do I return a product?",
+      "answer": "To return a product, visit the return section of our website, and follow the instructions to initiate a return request."
+    }
+  ],
+  "routes": [
+    {
+      "id": "a4db",
+      "walletName": "My Savings Wallet",
+      "walletId": "WAL123456789"
+    },
+    {
+      "id": "3480",
+      "departCity": "Moknine RUE Bayrem tounsi 5050",
+      "arrivalCity": "Monastir  4904",
+      "address": "",
+      "RayonAction": 20,
+      "minPrice": "100",
+      "dateAller": "2024-10-20",
+      "dateRetour": "2024-10-22",
+      "frequency": "once",
+      "allerRetour": false,
+      "etapes": []
+    },
+    {
+      "id": "4291",
+      "departCity": "",
+      "arrivalCity": "",
+      "address": "Moknine 5050",
+      "RayonAction": 59,
+      "minPrice": "100",
+      "dateAller": "",
+      "dateRetour": "",
+      "frequency": "",
+      "allerRetour": false,
+      "etapes": []
+    },
+    {
+      "id": "47df",
+      "departCity": "Moknine RUE Bayrem tounsi 5050",
+      "arrivalCity": "Monastir  4904",
+      "address": "",
+      "RayonAction": 20,
+      "minPrice": "1001",
+      "dateAller": "",
+      "dateRetour": "",
+      "frequency": "once",
+      "allerRetour": false,
+      "etapes": [
+        "Tboulba 5476",
+        "Jalem 6576"
+      ]
+    },
+    {
+      "id": "2ab0",
+      "departCity": "Moknine RUE Bayrem tounsi 5050",
+      "arrivalCity": "Monastir  4904",
+      "address": "",
+      "RayonAction": 20,
+      "minPrice": "1001",
+      "dateAller": "",
+      "dateRetour": "",
+      "frequency": "regular",
+      "allerRetour": false,
+      "etapes": [
+        "Tboulba 5476",
+        "Jalem 6576"
+      ]
+    },
+    {
+      "id": "b989",
+      "departCity": "Moknine RUE Bayrem tounsi 5050",
+      "arrivalCity": "Monastir  4904",
+      "address": "",
+      "RayonAction": 0,
+      "minPrice": "100",
+      "dateAller": "",
+      "dateRetour": "",
+      "frequency": "regular",
+      "allerRetour": false,
+      "etapes": [
+        "Tboulba 5476",
+        "Jalem 6576"
+      ]
+    },
+    {
+      "id": "6c36",
+      "departCity": "Moknine RUE Bayrem tounsi 5050",
+      "arrivalCity": "Monastir  4904",
+      "address": "",
+      "RayonAction": 0,
+      "minPrice": "100",
+      "dateAller": "",
+      "dateRetour": "",
+      "frequency": "regular",
+      "allerRetour": false,
+      "etapes": [],
+      "checkedDays": [
+        "Mardi",
+        "Lundi"
+      ]
+    },
+    {
+      "id": "2d6a",
+      "departCity": "Moknine RUE Bayrem tounsi 5050",
+      "arrivalCity": "Monastir  4904",
+      "address": "",
+      "RayonAction": 0,
+      "minPrice": "100",
+      "dateAller": "",
+      "dateRetour": "",
+      "frequency": "regular",
+      "allerRetour": false,
+      "etapes": [
+        "Tboulba 5476"
+      ],
+      "checkedDays": []
+    },
+    {
+      "id": "81bd",
+      "departCity": "Moknine RUE Bayrem tounsi 5050",
+      "arrivalCity": "Monastir  4904",
+      "address": "",
+      "RayonAction": 0,
+      "minPrice": "1001",
+      "dateAller": "",
+      "dateRetour": "",
+      "frequency": "regular",
+      "allerRetour": false,
+      "etapes": [
+        "Tboulba 5476"
+      ]
+    },
+    {
+      "id": "22fa",
+      "departCity": "Moknine RUE Bayrem tounsi 5050",
+      "arrivalCity": "Monastir  4904",
+      "address": "5050",
+      "RayonAction": 84,
+      "minPrice": "1001",
+      "dateAller": "2024-10-19",
+      "dateRetour": "2024-10-25",
+      "frequency": "once",
+      "allerRetour": false,
+      "etapes": [
+        "Tboulba 5476"
+      ]
+    },
+    {
+      "id": "dbba",
+      "departCity": "Moknine RUE Bayrem tounsi 5050",
+      "arrivalCity": "Monastir  4904",
+      "address": "",
+      "RayonAction": 0,
+      "minPrice": "100",
+      "dateAller": "",
+      "dateRetour": "",
+      "frequency": "regular",
+      "allerRetour": false,
+      "etapes": []
+    },
+    {
+      "id": "9cb8",
+      "departCity": "Moknine RUE Bayrem tounsi 5050",
+      "arrivalCity": "Monastir  4904",
+      "address": "",
+      "RayonAction": 0,
+      "minPrice": "100",
+      "dateAller": "",
+      "dateRetour": "",
+      "frequency": "regular",
+      "allerRetour": false,
+      "etapes": [
+        "Tboulba 5476"
+      ]
+    },
+    {
+      "id": "5b4b",
+      "departCity": "Moknine RUE Bayrem tounsi 5050",
+      "arrivalCity": "Monastir  4904",
+      "address": "",
+      "RayonAction": 0,
+      "minPrice": "100",
+      "dateAller": "2024-10-24",
+      "dateRetour": "2024-10-25",
+      "frequency": "once",
+      "allerRetour": false,
+      "etapes": [
+        "Tboulba 5476"
+      ]
+    },
+    {
+      "id": "ffdb",
+      "departCity": "Moknine RUE Bayrem tounsi 5050",
+      "arrivalCity": "Monastir  4904",
+      "address": "5050",
+      "RayonAction": 79,
+      "minPrice": "100",
+      "dateAller": "Mardi",
+      "dateRetour": "Dimanche",
+      "frequency": "regular",
+      "allerRetour": true,
+      "etapes": []
+    },
+    {
+      "id": "bad4",
+      "departCity": "Moknine RUE Bayrem tounsi 5050",
+      "arrivalCity": "Monastir  4904",
+      "address": "",
+      "RayonAction": 0,
+      "minPrice": "1001",
+      "dateAller": "",
+      "dateRetour": "",
+      "frequency": "",
+      "allerRetour": false,
+      "etapes": []
+    }
+  ]
+}
