@@ -1,75 +1,313 @@
-import { useState } from "react";
-import SearchIcon from "@mui/icons-material/Search";
-import AddIcon from "@mui/icons-material/Add";
-import Select from "react-select";
-import InputeStyles from "../../utils/InputeStyles";
-import PropTypes from "prop-types";
-import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
+import "./App.css";
+import { Link, Route, Routes, useLocation } from "react-router-dom";
+import {
+  InternalSideBarLeft,
+  NavBar,
+  BottomNavBar,
+  IconBreadcrumbs,
+} from "./components";
 
-const Card = (props) => {
-  const [searchQuery, setSearchQuery] = useState("");
+import {
+  Home,
+  FAQ,
+  NFCTags,
+  HowItWorks,
+  NFCBusinessCards,
+  Dashboard,
+  SearchPackage,
+  Setting,
+  AddressBook,
+  Payments,
+  Support,
+  Login,
+  SignUp,
+} from "./pages";
+import { useEffect, useRef, useState } from "react";
+import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined";
+import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
+import Nnavbar from "./components/Nnavbar";
+import ProfileMobileView from "./components/ProfileMobileView";
+import Messages from "./pages/messages";
+import Verify from "./pages/Verify";
+import Account from "./pages/Account";
+import PersonInfoPage from "./pages/PersoneInfoPage";
+import ModifyAccount from "./pages/ModifyAccount";
+import MesPayments from "./pages/MesPayments";
+import MessagesChat from "./pages/messagesChat";
+import AddAnnouncement from "./pages/AddAnnouncement/AddAnnouncement";
+import AddRoute from "./pages/AddRoute/AddRoute";
 
-  Card.propTypes = {
-    name: PropTypes.string.isRequired,
-    firstSelectOptions: PropTypes.array.isRequired,
-    Options2: PropTypes.array.isRequired,
-    text: PropTypes.string.isRequired,
-    buttonName: PropTypes.string.isRequired,
-    annonces: PropTypes.array.isRequired, // Adding annonces to PropTypes
+import RouteListe from "./pages/MesCard/RouteListe";
+import MesLivraisons from "./pages/MesCard/MesLivraisons";
+import Notifications from "./pages/MesCard/Notifications";
+
+function App() {
+  const [isMobileView, setIsMobileView] = useState(false);
+  const [open, setOpen] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
+  const [messagenoti, setMessagenoti] = useState(true);
+  const [verifynoti, setVerifynoti] = useState(true);
+  const [openModalTrans, setOpenModalTrans] = useState(false);
+  const [openModalTrans2, setOpenModalTrans2] = useState(false);
+  const contentRef = useRef(null);
+  const TransRef2 = useRef(null);
+  const [movesidebar, setMovesidebar] = useState(false);
+  const [translateDropdownOpen, setTranslateDropdownOpen] = useState(false);
+  const TranslateRef = useRef(null);
+  const [isLogedIn, setIsLogedIn] = useState(true);
+  const colisRef = useRef(null);
+  const TransRef = useRef(null);
+  const location = useLocation();
+  const [openPorfileDropdown, setOpenPorfileDropdown] = useState(false);
+  const openPorfileDropdownRef = useRef(null);
+
+  const toggleSidebar = () => {
+    setMovesidebar(!movesidebar);
   };
+  useEffect(() => {
+    setMovesidebar(false);
+  }, [location]);
+  useEffect(() => {
+    console.log(movesidebar);
+  }, [movesidebar]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileView(window.innerWidth <= 1024);
+      setOpen(false);
+      setMovesidebar(false);
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
-    <div>
-      <div className="flex items-center justify-between  ">
-        <h1 className="text-2xl font-semibold">{props.name}</h1>
-        <button className=" px-3 py-2 border border-gray-300 rounded-full text-gray-700 hover:bg-gray-100 flex items-center justify-center">
-          <Plus className="h-6 w-6" />
-        </button>
-      </div>
+    <div className="w-full h-screen overflow-y-auto   ">
+      <div
+        className={`absolute transform z-[29] w-full block lg:hidden bg-black h-screen   ${
+          movesidebar || openPorfileDropdown || translateDropdownOpen
+            ? "opacity-80 "
+            : "opacity-0 pointer-events-none"
+        } transition-opacity duration-700`}
+      ></div>
 
-      <div className="relative mt-4 mb-4">
-        {/* Search */}
-        <input
-          className="w-full p-3 pl-16 pr-4 border rounded text-sm focus:outline-none focus:shadow-outline-yellow"
-          type="text"
-          placeholder="Recherche par titre, ref annonces"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          style={InputeStyles}
+      <div className="flex flex-col">
+        <Nnavbar
+          setMovesidebar={setMovesidebar}
+          messagenoti={messagenoti}
+          verifynoti={verifynoti}
+          TranslateRef={TranslateRef}
+          setTranslateDropdownOpen={setTranslateDropdownOpen}
+          translateDropdownOpen={translateDropdownOpen}
+          openPorfileDropdownRef={openPorfileDropdownRef}
+          setOpenPorfileDropdown={setOpenPorfileDropdown}
+          toggleSidebar={toggleSidebar}
         />
-        <div className="absolute inset-y-0 left-0 p-3 flex items-center pointer-events-none bg-yellow-500 rounded-l">
-          <SearchIcon className="text-white" />
+
+        <div className="flex flex-1 h-full">
+          {isLogedIn ? (
+            <>
+              <InternalSideBarLeft
+                open={open}
+                openPorfileDropdown={openPorfileDropdown}
+                setOpen={setOpen}
+                isMobileView={isMobileView}
+                contentRef={contentRef}
+                movesidebar={movesidebar}
+                setMovesidebar={setMovesidebar}
+                translateDropdownOpen={translateDropdownOpen}
+              />
+
+              <div
+                className="w-full h-full mt-16  lg:ml-[16rem] xl:ml-[16rem] mb-10  "
+                ref={contentRef}
+              >
+                <div
+                  className={`flex ${
+                    openPorfileDropdown
+                      ? "flex-row"
+                      : " justify-center items-center"
+                  } w-full h-full`}
+                >
+                  <Routes>
+                    <Route
+                      path="/Dashboard"
+                      element={
+                        <Dashboard
+                          translateDropdownOpen={translateDropdownOpen}
+                          openPorfileDropdown={openPorfileDropdown}
+                        />
+                      }
+                    />
+                    <Route path="/monprofile" element={<Dashboard />} />
+
+                    <Route path="/messages" element={<Messages />} />
+                    <Route path="/Support" element={<Support />} />
+                    <Route path="/faq" element={<FAQ />} />
+                    <Route path="/plaques-nfc" element={<NFCTags />} />
+                    <Route path="/comment-ca-marche" element={<HowItWorks />} />
+                    <Route
+                      path="/cartes-de-visite-nfc"
+                      element={<NFCBusinessCards />}
+                    />
+                    <Route
+                      path="/ajouter-une-annonce"
+                      element={<AddAnnouncement />}
+                    />
+                    <Route path="/ajouter-un-trajet" element={<AddRoute />} />
+                    <Route
+                      path="/chercher-un-colis"
+                      element={<SearchPackage />}
+                    />
+                    <Route path="/mes-livraisons" element={<MesLivraisons />} />
+                    <Route path="/setting" element={<Setting />} />
+                    <Route path="/payments" element={<Payments />} />
+                    <Route path="/mespayments" element={<MesPayments />} />
+                    <Route path="/mes-annonces" element={<Notifications />} />
+                    <Route path="/trajets" element={<RouteListe />} />
+                    <Route path="/carnet-d-adresse" element={<AddressBook />} />
+                    <Route path="/verifier" element={<Verify />} />
+                    <Route
+                      path="/messageschat/:name"
+                      element={<MessagesChat />}
+                    />
+                    <Route path="/account" element={<Account />} />
+                    <Route path="/" element={<Home />} />
+                    <Route path="/modifyaccount" element={<ModifyAccount />} />
+                  </Routes>
+                </div>
+              </div>
+            </>
+          ) : (
+            <div className="w-full">
+              <Routes>
+                <Route path="/seconnecter" element={<Login />} />
+                <Route path="/inscription" element={<SignUp />} />
+
+                <Route />
+              </Routes>
+            </div>
+          )}
+          <ProfileMobileView
+            verifynoti={verifynoti}
+            setMovesidebar={setMovesidebar}
+            TranslateRef={TranslateRef}
+            setTranslateDropdownOpen={setTranslateDropdownOpen}
+            openPorfileDropdown={openPorfileDropdown}
+            translateDropdownOpen={translateDropdownOpen}
+            openPorfileDropdownRef={openPorfileDropdownRef}
+            setOpenPorfileDropdown={setOpenPorfileDropdown}
+          />
+        </div>
+      </div>
+      {isLogedIn && isMobileView && !open && (
+        <div className="mt-10">
+          <BottomNavBar />
+        </div>
+      )}
+      <div
+        className={`bg-white border shadow-md w-60 h-28 fixed z-60 top-[-150px] right-[28%] rounded-lg transition-transform ${
+          openModal ? " transform translate-y-[200%] delay-8" : ""
+        }`}
+        ref={colisRef}
+      >
+        <div className="flex flex-col justify-center items-center gap-4 p-3 h-full">
+          <Link
+            onClick={() => setOpenModal(false)}
+            to="/"
+            className="flex items-center justify-start w-full gap-4 px-4"
+          >
+            <Inventory2OutlinedIcon />
+            <span>Colis</span>
+          </Link>
+          <Link
+            onClick={() => setOpenModal(false)}
+            to=""
+            className="flex items-center justify-start w-full gap-4 px-4"
+          >
+            <LocalShippingOutlinedIcon />
+            <span>Transporteur</span>
+          </Link>
         </div>
       </div>
 
-      {/* Filter Options */}
-      <div className="flex mb-4">
-        <div className="flex-grow mr-2 w-70">
-          <Select
-            className="flex-grow w-full mr-2 text-sm border border-gray-200 py rounded bg-color"
-            options={props.firstSelectOptions}
-            styles={InputeStyles}
-            isSearchable={false}
-          />
-        </div>
-        <div className="flex-grow w-30">
-          <Select
-            className="flex-grow w-full text-sm border border-gray-200 rounded"
-            options={props.Options2}
-            styles={InputeStyles}
-            isSearchable={false}
-          />
+      <div
+        className={`bg-white border shadow-md w-60 h-30 fixed z-60 top-[-150px] left-[13%] rounded-lg transition-transform ${
+          openModalTrans ? " transform translate-y-[142%] delay-8" : ""
+        }`}
+        ref={TransRef}
+      >
+        <div className="flex flex-col justify-center items-center gap-4 p-3 h-full">
+          <Link
+            onClick={() => setOpenModalTrans(false)}
+            to="/"
+            className="flex items-center justify-start w-full gap-4 px-4"
+          >
+            <Inventory2OutlinedIcon />
+            <span>Proposer un trajet</span>
+          </Link>
+          <Link
+            onClick={() => setOpenModalTrans2(false)}
+            to="/"
+            className="flex items-center justify-start w-full gap-4 px-4"
+          >
+            <Inventory2OutlinedIcon />
+            <span>Proposer un trajet</span>
+          </Link>
+          <Link
+            onClick={() => setOpenModalTrans(false)}
+            to=""
+            className="flex items-center justify-start w-full gap-4 px-4"
+          >
+            <LocalShippingOutlinedIcon />
+            <span>Comment ça marche</span>
+          </Link>
         </div>
       </div>
-      <div className="mb-4  ">
-        <Button className="w-full bg-yellow-500 text-white font-medium hover:bg-yellow-600 flex items-center justify-center gap-2">
-          <span> chercher </span>
-        </Button>
+
+      <div
+        className={`bg-white border absolute shadow-md w-60  h-30 fixed z-60 top-[-150px] left-[22%] rounded-lg transition-transform ${
+          openModalTrans2 ? " transform translate-y-[125%] delay-8" : ""
+        }`}
+        ref={TransRef2}
+      >
+        <div className="flex flex-col justify-center items-center gap-4 p-3 h-full">
+          <Link
+            onClick={() => setOpenModalTrans2(false)}
+            to="/"
+            className="flex items-center justify-start w-full gap-4 px-4"
+          >
+            <Inventory2OutlinedIcon />
+            <span>Proposer un trajet</span>
+          </Link>
+
+          <Link
+            onClick={() => setOpenModalTrans2(false)}
+            to=""
+            className="flex items-center justify-start w-full gap-4 px-4"
+          >
+            <LocalShippingOutlinedIcon />
+            <span>Comment ça marche</span>
+          </Link>
+
+          <Link
+            onClick={() => setOpenModalTrans2(false)}
+            to=""
+            className="flex items-center justify-start w-full gap-4 px-4"
+          >
+            <LocalShippingOutlinedIcon />
+            <span>Comment ça marche</span>
+          </Link>
+        </div>
       </div>
-      <div class="h-2 rounded-lg bg-gray-100 my-4"></div>
     </div>
   );
-};
+}
 
-export default Card;
+export default App;
