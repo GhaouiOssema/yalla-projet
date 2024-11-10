@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import AddIcon from "@mui/icons-material/Add";
-import Select from 'react-select';
+import Select from "react-select";
 import InputeStyles from "../../utils/InputeStyles";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
 
 const Card = (props) => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -18,14 +20,12 @@ const Card = (props) => {
   };
 
   return (
-    <div >
-
-      <div className="flex items-center justify-between">
-        <h1 className="font-semibold text-[20px] text-gray-800">{props.name}</h1>
-        <div className="flex items-center">
-          <span className="mr-4"></span>
-          <AddIcon className="text-yellow-500 mb-1 text-4xl ml-4" style={{ fontSize: "2rem" }} />
-        </div>
+    <div>
+      <div className="flex items-center justify-between  ">
+        <h1 className="text-2xl font-semibold">{props.name}</h1>
+        <button className=" px-3 py-2 border border-gray-300 rounded-full text-gray-700 hover:bg-gray-100 flex items-center justify-center">
+          <Plus className="h-6 w-6" />
+        </button>
       </div>
 
       <div className="relative mt-4 mb-4">
@@ -62,7 +62,12 @@ const Card = (props) => {
           />
         </div>
       </div>
-
+      <div className="mb-4  ">
+        <Button className="w-full bg-yellow-500 text-white font-medium hover:bg-yellow-600 flex items-center justify-center gap-2">
+          <span> chercher </span>
+        </Button>
+      </div>
+      <div class="h-2 rounded-lg bg-gray-100 my-4"></div>
     </div>
   );
 };
