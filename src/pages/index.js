@@ -18,3 +18,6 @@ export { default as RouteListe } from "./MesCard/RouteListe";
 export { default as Support } from "./Support";
 export { default as Chat } from "./messagesChat";
 export { default as AnnonceDetails } from "./AnnonceDetails";
+export { default as Trajet } from "./trajet/Trajet";
+export { default as ShareAccount } from "./ShareAccount";
+export { default as ShareWithFrend } from "./ShareWithFrend";

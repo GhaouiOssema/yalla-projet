@@ -27,7 +27,12 @@ const ProfileMobileView = (props) => {
                         <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
                             {ProfileMobile.map((menu, index) => (
                                 <li key={index} to={menu.link}>
-                                    <Link className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 text-md ">
+                                    <Link
+                                        to={menu.link}
+                                        onClick={() =>
+                                            props.setOpenPorfileDropdown(false)
+                                        }
+                                        className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 text-md ">
                                         <menu.icon className="w-5 h-5" />
                                         {menu.title}
                                     </Link>

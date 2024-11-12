@@ -29,6 +29,7 @@
         "framer-motion": "^11.0.14",
         "install": "^0.13.0",
         "lucide-react": "^0.363.0",
+        "motion": "^11.11.14",
         "npm": "^10.5.2",
         "postcss": "^8.4.35",
         "prop-types": "^15.8.1",

@@ -22,7 +22,7 @@ w les buttons mellouta confirmer la livraison avec icone
 button +icone discuter border bg-gray-50 hover:bg-gray-100 text kima el badge 
 
 
-Mes trajets
+Mes trajets *************************************
 
 naemlo les badges dynamique 
 nzido badge date kima mes annonce
@@ -30,8 +30,10 @@ nzido badge date kima mes annonce
 
 taww nraK7o les component w les fichiers kima tfahemna w asemi les fichiers b shyh 
 
-nrakho el popup mtea3 modifier w supprimer 
+nrakho el popup mtea3 modifier w supprimer  ----- mezelt ill modifier
 
+
+*********************************
 
 
 

@@ -1,10 +1,13 @@
 import React from "react";
 import "tailwindcss/tailwind.css";
 import Icons from "./Icons/Icons";
+import { Link } from "react-router-dom";
 
 export default function Profile() {
     return (
-        <div className="flex  gap-4 p-2 rounded-lg border border-gray-200">
+        <Link
+            to="/account"
+            className="flex  gap-4 p-2 rounded-lg border border-gray-200">
             <div className="flex h-12 w-12 items-center justify-center rounded-full border">
                 <Icons.UserIcon className="h-6 w-6 text-gray-500 dark:text-gray-400" />
             </div>
@@ -16,7 +19,7 @@ export default function Profile() {
                     jared@example.com
                 </div>
             </div>
-        </div>
+        </Link>
     );
 }
 

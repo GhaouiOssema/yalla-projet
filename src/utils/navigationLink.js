@@ -30,144 +30,142 @@ import { MdOutlineMode } from "react-icons/md";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 
 export const menus = [
-  {
-    title: "Generale",
-  },
-  { name: "Dashboard", link: "/dashboard", icon: DashboardOutlinedIcon },
-  { name: "Mes Livraisons", link: "/mes-livraisons", icon: IosShareOutlinedIcon },
-  {
-    name: "Mes Annonces",
-    link: "/mes-annonces",
-    icon: MarkunreadMailboxOutlinedIcon,
-  },
-  {
-    name: "Mes trajets",
-    link: "/trajets",
-    icon: ForkRightIcon,
-  },
-  {
-    title: "Mes outils",
-  },
-  {
-    name: "Ajouter une annonce",
-    link: "/ajouter-une-annonce",
-    icon: AddIcon,
-  },
-  {
-    name: "Crée un trajet",
-    link: "/ajouter-un-trajet",
-    icon: AddRoadIcon,
-  },
+    {
+        title: "Generale",
+    },
+    { name: "Dashboard", link: "/dashboard", icon: DashboardOutlinedIcon },
+    {
+        name: "Mes Livraisons",
+        link: "/mes-livraisons",
+        icon: IosShareOutlinedIcon,
+    },
+    {
+        name: "Mes Annonces",
+        link: "/mes-annonces",
+        icon: MarkunreadMailboxOutlinedIcon,
+    },
+    {
+        name: "Mes trajets",
+        link: "/trajets",
+        icon: ForkRightIcon,
+    },
+    {
+        title: "Mes outils",
+    },
+    {
+        name: "Ajouter une annonce",
+        link: "/ajouter-une-annonce",
+        icon: AddIcon,
+    },
+    {
+        name: "Crée un trajet",
+        link: "/ajouter-un-trajet",
+        icon: AddRoadIcon,
+    },
 
-  {
-    name: "Carnet d'adresse",
-    link: "/carnet-d-adresse",
-    icon: StickyNote2OutlinedIcon,
-  },
-  {
-    name: "Mes paiements ",
-    link: "/mespayments",
-    icon: AttachMoneyOutlinedIcon,
-  },
+    {
+        name: "Carnet d'adresse",
+        link: "/carnet-d-adresse",
+        icon: StickyNote2OutlinedIcon,
+    },
+    {
+        name: "Mes paiements ",
+        link: "/mespayments",
+        icon: AttachMoneyOutlinedIcon,
+    },
 ];
 
 export const bottomMenu = [
-  {
-    dataTooltipTarget: "tooltip-home",
-    link: "/dashboard",
-    type: "button",
-    className:
-      "inline-flex flex-col items-center justify-center p-6 hover:bg-blue-600 group cursor-pointer",
+    {
+        dataTooltipTarget: "tooltip-home",
+        link: "/dashboard",
+        type: "button",
+        className:
+            "inline-flex flex-col items-center justify-center p-6 hover:bg-blue-600 group cursor-pointer",
 
-    svg: {
-      w: 26,
-      h: 26,
+        svg: {
+            w: 26,
+            h: 26,
+        },
+        icon: DashboardOutlinedIcon,
     },
-    icon: DashboardOutlinedIcon,
-  },
-  {
-    dataTooltipTarget: "tooltip-bookmark",
-    link: "/messages",
-    type: "button",
-    className:
-      "inline-flex flex-col items-center justify-center p-6 hover:bg-blue-600 group cursor-pointer",
-    svg: {
-      w: 26,
-      h: 26,
+    {
+        dataTooltipTarget: "tooltip-bookmark",
+        link: "/messages",
+        type: "button",
+        className:
+            "inline-flex flex-col items-center justify-center p-6 hover:bg-blue-600 group cursor-pointer",
+        svg: {
+            w: 26,
+            h: 26,
+        },
+        icon: ChatBubbleOutlineOutlinedIcon,
     },
-    icon: ChatBubbleOutlineOutlinedIcon,
-  },
-  {
-    dataTooltipTarget: "tooltip-add",
-    type: "button",
-    className:
-      "inline-flex flex-col items-center justify-center p-4 hover:bg-blue-600 group cursor-pointer",
-    svg: {
-      w: 32,
-      h: 32,
+    {
+        dataTooltipTarget: "tooltip-add",
+        type: "button",
+        className:
+            "inline-flex flex-col items-center justify-center p-4 hover:bg-blue-600 group cursor-pointer",
+        svg: {
+            w: 32,
+            h: 32,
+        },
+        icon: AddIcon,
     },
-    icon: AddIcon,
-  },
-  {
-    dataTooltipTarget: "tooltip-search",
-    link: "chercher-un-colis",
-    type: "button",
-    className:
-      "inline-flex flex-col items-center justify-center p-4 hover:bg-blue-600 group cursor-pointer",
-    svg: {
-      w: 32,
-      h: 32,
+    {
+        dataTooltipTarget: "tooltip-search",
+        link: "chercher-un-colis",
+        type: "button",
+        className:
+            "inline-flex flex-col items-center justify-center p-4 hover:bg-blue-600 group cursor-pointer",
+        svg: {
+            w: 32,
+            h: 32,
+        },
+        icon: SearchOutlinedIcon,
     },
-    icon: SearchOutlinedIcon,
-  },
-  {
-    dataTooltipTarget: "tooltip-settings",
-    link: "",
-    type: "button",
-    className:
-      "inline-flex flex-col items-center justify-center p-4 hover:bg-blue-600 group cursor-pointer",
-    svg: {
-      w: 32,
-      h: 32,
+    {
+        dataTooltipTarget: "tooltip-settings",
+        link: "",
+        type: "button",
+        className:
+            "inline-flex flex-col items-center justify-center p-4 hover:bg-blue-600 group cursor-pointer",
+        svg: {
+            w: 32,
+            h: 32,
+        },
+        icon: MoreHorizIcon,
     },
-    icon: MoreHorizIcon,
-  },
 ];
 export const ProfileMobile = [
-  {
-    title: "Ajouter un moyen de paiements ",
-    icon: FaRegCreditCard,
-    link: "/payments"
-  },
-  {
-    title: "verifier mon compte",
-    icon: MdOutlineVerified,
-    link: "/verifier"
-
-  },
-  {
-    title: "Modifier mes informations",
-    icon: MdOutlineMode,
-    link: "/account"
-
-  },
-  {
-    title: "Voir mon profil public ",
-    icon: BiShow,
-    link: "/modifyaccount"
-
-
-  },
-  {
-    title: "parrainer un ami ",
-    icon: IoPersonAddOutline,
-    link: "/payment"
-
-  },
-  {
-    title: "partager mon profil",
-    icon: MdOutlineShare,
-    link: "/payment"
-
-  },
+    {
+        title: "Ajouter un moyen de paiements ",
+        icon: FaRegCreditCard,
+        link: "/paiement",
+    },
+    {
+        title: "verifier mon compte",
+        icon: MdOutlineVerified,
+        link: "/verifier",
+    },
+    {
+        title: "Modifier mes informations",
+        icon: MdOutlineMode,
+        link: "/account",
+    },
+    {
+        title: "Voir mon profil public ",
+        icon: BiShow,
+        link: "/modifyaccount",
+    },
+    {
+        title: "parrainer un amie",
+        icon: IoPersonAddOutline,
+        link: "/parrainage/amie",
+    },
+    {
+        title: "partager mon profil",
+        icon: MdOutlineShare,
+        link: "/compte/partage/publique",
+    },
 ];

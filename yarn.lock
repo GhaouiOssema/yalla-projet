@@ -2528,10 +2528,10 @@ fraction.js@^4.3.7:
   resolved "https://registry.npmjs.org/fraction.js/-/fraction.js-4.3.7.tgz"
   integrity sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==
 
-framer-motion@^11.0.14:
-  version "11.0.14"
-  resolved "https://registry.npmjs.org/framer-motion/-/framer-motion-11.0.14.tgz"
-  integrity sha512-RFjo2hB1MTW0EWsHQaXgVn0AEUDGxAs0ZL2vVjTTJJu3N7wFiLkmqTn5ysLjL+qKZ9jvfpKXDb9waN9AyLqk8g==
+framer-motion@^11.0.14, framer-motion@^11.11.13:
+  version "11.11.13"
+  resolved "https://registry.npmjs.org/framer-motion/-/framer-motion-11.11.13.tgz"
+  integrity sha512-aoEA83gsqRRsnh4TN7S9YNcKVLrg+GtPNnxNMd9bGn23+pLmuKGQeccPnqffEKzlkgmy2MkMo0jRkK41S2LzWw==
   dependencies:
     tslib "^2.4.0"
 
@@ -3646,6 +3646,14 @@ mkdirp@^1.0.3:
   version "1.0.4"
   resolved "https://registry.npmjs.org/mkdirp/-/mkdirp-1.0.4.tgz"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
+
+motion@^11.11.14:
+  version "11.11.14"
+  resolved "https://registry.npmjs.org/motion/-/motion-11.11.14.tgz"
+  integrity sha512-WABtM4t3+SQ4jQ/5TDkRsH9VD6jakGeOrnzra4tnDma0JUT21/n113yCyn889yJSq0bEJnfFphFXo0gOVRICXg==
+  dependencies:
+    framer-motion "^11.11.13"
+    tslib "^2.4.0"
 
 mrmime@^2.0.0:
   version "2.0.0"
