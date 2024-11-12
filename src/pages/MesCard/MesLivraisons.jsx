@@ -36,7 +36,7 @@ const MesLivraisons = () => {
 
   if (error) {
     return (
-      <div className="container w-full p-2 lg:px-[20%] mt-10">
+      <div className="w-full min-h-screen  overflow-hidden  lg:mt-0 mt-5 xl:p-16 lg:p-12 p-2 ">
         {" "}
         <Card
           name="Mes livraisons"
@@ -70,7 +70,8 @@ const MesLivraisons = () => {
   }
 
   return (
-    <div className="container w-full p-2 lg:px-[20%] mt-10">
+    <div className="w-full min-h-screen  overflow-hidden  lg:mt-0 mt-5 xl:p-16 lg:p-12 p-2 ">
+      {" "}
       <Card
         name="Mes livraisons"
         firstSelectOptions={[
@@ -89,7 +90,6 @@ const MesLivraisons = () => {
         ]}
       />
       {/* Last Section */}
-
       <div className=" bg-gray-50 border p-2 rounded mt-8 flex flex-col items-center justify-center">
         {livraisons.length > 0 ? (
           livraisons.map((livraison) => (

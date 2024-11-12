@@ -9,6 +9,12 @@ const Card = ({ children, className = "" }) => {
   );
 };
 
+// CardTitle Component
+
+const CardTitle = ({ children, className = "" }) => {
+  return <h3 className={`text-lg font-semibold ${className}`}>{children}</h3>;
+};
+
 // CardContent Composant
 const CardContent = ({ children, className = "" }) => {
   return <div className={`px-4 py-2 rounded ${className}`}>{children}</div>;
@@ -28,4 +34,4 @@ const CardHeader = ({ children, className = "" }) => {
   return <div className={`card-header  ${className}`}>{children}</div>;
 };
 
-export { Card, CardContent, CardFooter, CardHeader };
+export { Card, CardContent, CardFooter, CardHeader, CardTitle };

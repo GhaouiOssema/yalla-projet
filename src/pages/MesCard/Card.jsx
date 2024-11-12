@@ -1,73 +1,204 @@
-import { useState } from "react";
-import SearchIcon from "@mui/icons-material/Search";
-import AddIcon from "@mui/icons-material/Add";
-import Select from "react-select";
-import InputeStyles from "../../utils/InputeStyles";
-import PropTypes from "prop-types";
-import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
+import React, { useState } from "react";
 
-const Card = (props) => {
+const Card = ({ name, subname, firstSelectOptions, Options2 }) => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [statusFilter, setStatusFilter] = useState(null);
+  const [sortOrder, setSortOrder] = useState(null);
+  const [dateFilter, setDateFilter] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [showCustomDatePicker, setShowCustomDatePicker] = useState(false);
 
-  Card.propTypes = {
-    name: PropTypes.string.isRequired,
-    firstSelectOptions: PropTypes.array.isRequired,
-    Options2: PropTypes.array.isRequired,
-    text: PropTypes.string.isRequired,
-    buttonName: PropTypes.string.isRequired,
-    annonces: PropTypes.array.isRequired, // Adding annonces to PropTypes
+  const handleSearch = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const handleStatusChange = (event) => {
+    const option = firstSelectOptions.find(
+      (opt) => opt.value === event.target.value
+    );
+    setStatusFilter(option || null);
+  };
+
+  const handleSortChange = (event) => {
+    const option = Options2.find((opt) => opt.value === event.target.value);
+    setSortOrder(option || null);
+  };
+
+  const handleDateChange = (event) => {
+    const value = event.target.value;
+    setDateFilter(value);
+    if (value === "custom") {
+      setShowCustomDatePicker(true);
+    } else {
+      setShowCustomDatePicker(false);
+      setStartDate("");
+      setEndDate("");
+    }
+  };
+
+  const handleStartDateChange = (event) => {
+    setStartDate(event.target.value);
+  };
+
+  const handleEndDateChange = (event) => {
+    setEndDate(event.target.value);
+  };
+
+  const handleSearchSubmit = (event) => {
+    event.preventDefault();
+    console.log("Searching for:", searchQuery);
+  };
+
+  const removeFilter = (filterType) => {
+    switch (filterType) {
+      case "search":
+        setSearchQuery("");
+        break;
+      case "status":
+        setStatusFilter(null);
+        break;
+      case "sort":
+        setSortOrder(null);
+        break;
+      case "date":
+        setDateFilter("");
+        setShowCustomDatePicker(false);
+        setStartDate("");
+        setEndDate("");
+        break;
+      default:
+        break;
+    }
+  };
+
+  const renderFilterChip = (label, value, filterType) => {
+    if (!value) return null;
+    return (
+      <span className="flex items-center gap-2 bg-gray-200 rounded-full px-4 py-2 text-sm">
+        <span className="max-w-[150px] truncate">{value}</span>
+        <button
+          onClick={() => removeFilter(filterType)}
+          className="text-xs text-gray-500"
+        >
+          ✕
+        </button>
+      </span>
+    );
   };
 
   return (
-    <div>
-      <div className="flex items-center justify-between  ">
-        <h1 className="text-2xl font-semibold">{props.name}</h1>
-        <button className=" px-3 py-2 border border-gray-300 rounded-full text-gray-700 hover:bg-gray-100 flex items-center justify-center">
-          <Plus className="h-6 w-6" />
+    <div className=" w-full mx-auto rounded-lg bg-gray-50 p-5 ">
+      <div className="flex justify-between items-center pb-5 border-b border-gray-200">
+        <div>
+          <h2 className="text-2xl font-bold">{name}</h2>
+          <p className="text-sm text-gray-600 mt-1">{subname}</p>
+        </div>
+        <button className="w-10 h-10 rounded-full bg-blue-500 text-white text-xl">
+          +
         </button>
       </div>
+      <div className="p-5">
+        <form onSubmit={handleSearchSubmit} className="flex gap-4 mb-5">
+          <div className="flex-grow relative">
+            <input
+              type="search"
+              placeholder="Rechercher des annonces..."
+              className="w-full pl-10 pr-4 py-2 rounded-full border border-gray-300 text-sm"
+              value={searchQuery}
+              onChange={handleSearch}
+            />
+          </div>
+          <button
+            type="submit"
+            className="px-6 py-2 rounded-full bg-blue-500 text-white text-sm"
+          >
+            Rechercher
+          </button>
+        </form>
 
-      <div className="relative mt-4 mb-4">
-        {/* Search */}
-        <input
-          className="w-full p-3 pl-16 pr-4 border rounded text-sm focus:outline-none focus:shadow-outline-yellow"
-          type="text"
-          placeholder="Recherche par titre, ref annonces"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          style={InputeStyles}
-        />
-        <div className="absolute inset-y-0 left-0 p-3 flex items-center pointer-events-none bg-yellow-500 rounded-l">
-          <SearchIcon className="text-white" />
+        <div className="flex flex-wrap gap-4 mb-5">
+          <select
+            onChange={handleStatusChange}
+            value={statusFilter?.value || ""}
+            className="px-4 py-2 rounded-md border border-gray-300 text-sm min-w-[200px]"
+          >
+            <option value="">Filtrer par statut</option>
+            {firstSelectOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+          <select
+            onChange={handleSortChange}
+            value={sortOrder?.value || ""}
+            className="px-4 py-2 rounded-md border border-gray-300 text-sm min-w-[200px]"
+          >
+            <option value="">Trier par</option>
+            {Options2.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+          <select
+            onChange={handleDateChange}
+            value={dateFilter}
+            className="px-4 py-2 rounded-md border border-gray-300 text-sm min-w-[200px]"
+          >
+            <option value="">Filtrer par date</option>
+            <option value="today">Aujourd'hui</option>
+            <option value="this_week">Cette semaine</option>
+            <option value="this_month">Ce mois</option>
+            <option value="last_month">Le mois dernier</option>
+            <option value="custom">Personnalisé</option>
+          </select>
         </div>
-      </div>
 
-      {/* Filter Options */}
-      <div className="flex mb-4">
-        <div className="flex-grow mr-2 w-70">
-          <Select
-            className="flex-grow w-full mr-2 text-sm border border-gray-200 py rounded bg-color"
-            options={props.firstSelectOptions}
-            styles={InputeStyles}
-            isSearchable={false}
-          />
-        </div>
-        <div className="flex-grow w-30">
-          <Select
-            className="flex-grow w-full text-sm border border-gray-200 rounded"
-            options={props.Options2}
-            styles={InputeStyles}
-            isSearchable={false}
-          />
+        {showCustomDatePicker && (
+          <div className="flex gap-4 mb-5">
+            <div>
+              <label htmlFor="start-date" className="block text-sm">
+                Date de début
+              </label>
+              <input
+                id="start-date"
+                type="date"
+                value={startDate}
+                onChange={handleStartDateChange}
+                className="px-4 py-2 rounded-md border border-gray-300 text-sm"
+              />
+            </div>
+            <div>
+              <label htmlFor="end-date" className="block text-sm">
+                Date de fin
+              </label>
+              <input
+                id="end-date"
+                type="date"
+                value={endDate}
+                onChange={handleEndDateChange}
+                className="px-4 py-2 rounded-md border border-gray-300 text-sm"
+              />
+            </div>
+          </div>
+        )}
+
+        <div className="flex flex-wrap gap-4">
+          {renderFilterChip("Recherche", searchQuery, "search")}
+          {renderFilterChip("Statut", statusFilter?.label, "status")}
+          {renderFilterChip("Tri", sortOrder?.label, "sort")}
+          {renderFilterChip(
+            "Date",
+            dateFilter === "custom" ? `${startDate} - ${endDate}` : dateFilter,
+            "date"
+          )}
+          {!statusFilter && !sortOrder && !searchQuery && !dateFilter && (
+            <span className="text-sm text-gray-600">Aucun filtre appliqué</span>
+          )}
         </div>
       </div>
-      <div className="mb-4  ">
-        <Button className="w-full bg-yellow-500 text-white font-medium hover:bg-yellow-600 flex items-center justify-center gap-2">
-          <span> chercher </span>
-        </Button>
-      </div>
-      <div class="h-2 rounded-lg bg-gray-100 my-4"></div>
     </div>
   );
 };
