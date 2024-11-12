@@ -94,7 +94,7 @@ function RouteListe() {
       />
 
       {/* Last Section: Route Details with Direct Badge Replacement */}
-      <div className="w-full bg-gray-50 border p-4 rounded mt-8 flex flex-col items-center justify-center">
+      <div className="w-full p-4 rounded mt-8 flex flex-col items-center justify-center border bg-gray-50">
         {staticRoutes.length > 0 ? (
           staticRoutes.map((route) => (
             <div

@@ -1,0 +1,49 @@
+nafes el component bech yet3awed 3la el 3 (livraison annonce trajet )
+les badges dynamique ( 2type de badge )
+
+mes annonces
+date fi badge el s8ir Entre le 15juin - 3nov , Avant  15 juin , Aujourd'hui
+les badges S M L XL 2XL meghir texte MAX fi el badge el kbir 
+badges 1Pers , 2pers , Au pied du veihucule zidelha (truncate) 
+badge category meghir matekteb category juste icone w category mtea3 el colis direct
+
+nbadlo el badge active a coté du titre bjanbo el badge urgent >>>>
+badge Urgent color orange-500 bjanab el badge active (mouch dima yodhor) nafes el size howa w el badge active 
+
+le prix meghir text  (à partir de)  w nzidoulo icone bnafes el size mtea3 icone trajet regulier fi mes trajets
+
+mes livraison 
+nafes mes annonce 
+juste meghir barcha des badge 
+juste badge date kima mes annonces w size colis (badge sghir)
+w badge Colis de (esem el sayed P.)
+
+w les buttons mellouta confirmer la livraison avec icone 
+button +icone discuter border bg-gray-50 hover:bg-gray-100 text kima el badge 
+
+
+Mes trajets
+
+naemlo les badges dynamique 
+nzido badge date kima mes annonce
+
+
+taww nraK7o les component w les fichiers kima tfahemna w asemi les fichiers b shyh 
+
+nrakho el popup mtea3 modifier w supprimer 
+
+
+
+
+//////
+
+nrakho les lien mtea3 el dropdown profile 
+nrakho les lien mtea3 chercher un colis w transporteur fi navbar houma les pages mtea3 el listings( khalihom fer8in)
+
+ki nenzel 3la ajouter une annoce w illa cree un trajet side bar tetnaha w to93od fi mobile 
+ 
+
+
+
+
+
