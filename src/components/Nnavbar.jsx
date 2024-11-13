@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import logo from "../assets/logo1.png";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
@@ -12,32 +12,21 @@ import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
 import { AiOutlineMessage } from "react-icons/ai";
 
 function Nnavbar({
-    TranslateRef,
     setTranslateDropdownOpen,
     setOpenPorfileDropdown,
     toggleSidebar,
-    openPorfileDropdownRef,
     messagenoti,
-    verifynoti,
     setMovesidebar,
+    showSide,
 }) {
-    const [supportDropdownOpen, setSupportDropdownOpen] = useState(false);
     const [searchDropdownOpen, setSearchDropdownOpen] = useState(false);
-    const [helpDropdownOpen, setHelpDropdownOpen] = useState(false);
-    const [accountDropdownOpen, setAccountDropdownOpen] = useState(false);
     const [colisDropDownOpen, setColisDropDownOpen] = useState(false);
-    const timeoutRef = useRef(null);
-    const profileRef = useRef(null);
-    const accountRef = useRef(null);
 
     const colisRef = useRef(null);
     function handleDropdownMouseLeave(setState, useRef) {
         useRef.current = setTimeout(() => {
             setState(false);
         }, 100);
-    }
-    function closeDropdown(setState) {
-        setState(false);
     }
 
     function handleMouseEnter(setState, useRef) {
@@ -68,6 +57,15 @@ function Nnavbar({
                     className="block  lg:hidden ml-5 cursor-pointer">
                     <MenuIcon style={{ fontSize: 24 }} />
                 </div>
+                {showSide && (
+                    <div
+                        onClick={() => {
+                            toggleSidebar();
+                        }}
+                        className="hidden lg:block ml-5 cursor-pointer">
+                        <MenuIcon style={{ fontSize: 24 }} />
+                    </div>
+                )}
                 <img
                     src={logo}
                     className="w-[100px] py-20 lg:ml-5 ml-3"
@@ -124,10 +122,12 @@ function Nnavbar({
                                 }}
                                 className="cursor-pointer absolute right-0 h-full rounded-lg w-22  ">
                                 <div className="h-full flex flex-col items-center justify-center">
-                                    <div className="flex items-center justify-between border h-full bg-gray-50 rounded-r-lg">
+                                    <Link
+                                        to="/colis"
+                                        className="flex items-center justify-between border h-full bg-gray-50 rounded-r-lg">
                                         <span className="px-1 pl-2">Colis</span>
                                         <KeyboardArrowDownRoundedIcon />
-                                    </div>
+                                    </Link>
                                 </div>
                             </span>
                         </span>
@@ -148,13 +148,13 @@ function Nnavbar({
                         <div className="bg-white border shadow-md w-50 h-28 fixed z-60 top-16 right-[45%] rounded-lg">
                             <div className="flex flex-col justify-center items-center gap-4 p-3 h-full">
                                 <Link
-                                    to=""
+                                    to="/colis"
                                     className="flex items-center justify-start w-full gap-4 px-4">
                                     <Inventory2OutlinedIcon />
                                     <span>Colis</span>
                                 </Link>
                                 <Link
-                                    to=""
+                                    to="/transporteur"
                                     className="flex items-center justify-start w-full gap-4 px-4">
                                     <LocalShippingOutlinedIcon />
                                     <span>Transporteur</span>

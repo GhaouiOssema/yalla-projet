@@ -1,8 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { FiAlertCircle } from "react-icons/fi";
-import { useState } from "react";
 
-const DeleteButton = ({ isOpen, setIsOpen }) => {
+const DeleteButton = ({ isOpen, setIsOpen, text }) => {
     return (
         <AnimatePresence>
             {isOpen && (
@@ -26,10 +25,7 @@ const DeleteButton = ({ isOpen, setIsOpen }) => {
                             <h3 className="text-3xl font-bold text-center mb-2">
                                 Attention !
                             </h3>
-                            <p className="text-center mb-6">
-                                Êtes-vous sûr de vouloir supprimer ce trajet ?
-                                Cette action est irréversible.
-                            </p>
+                            <p className="text-center mb-6">{text}</p>
                             <div className="flex gap-2">
                                 <button
                                     onClick={() => setIsOpen(false)}

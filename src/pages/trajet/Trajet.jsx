@@ -93,7 +93,7 @@ const Trajet = () => {
 
     return (
         <>
-            <DeleteButton isOpen={isOpen} setIsOpen={setIsOpen} />
+            <DeleteButton isOpen={isOpen} setIsOpen={setIsOpen} text={"Êtes-vous sûr de vouloir supprimer ce trajet ? Cette action est irréversible."} />
             <div className="w-full min-h-screen overflow-hidden lg:mt-0 mt-5 xl:p-16 lg:p-12 p-2">
                 <Card
                     name="Mes trajets"

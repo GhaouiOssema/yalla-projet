@@ -1,11 +1,6 @@
 import "./App.css";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
-import {
-    InternalSideBarLeft,
-    NavBar,
-    BottomNavBar,
-    IconBreadcrumbs,
-} from "./components";
+import { InternalSideBarLeft, BottomNavBar } from "./components";
 
 import {
     Home,
@@ -24,6 +19,9 @@ import {
     Trajet,
     ShareAccount,
     ShareWithFrend,
+    Transporteur,
+    ColisList,
+    Annonces,
 } from "./pages";
 import { useEffect, useRef, useState } from "react";
 import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined";
@@ -41,13 +39,12 @@ import AddAnnouncement from "./pages/AddAnnouncement/AddAnnouncement";
 import AddRoute from "./pages/AddRoute/AddRoute";
 
 import RouteListe from "./pages/MesCard/RouteListe";
-import MesLivraisons from "./pages/MesCard/MesLivraisons";
+import MesLivraisons from "./pages/mesLivraisons/MesLivraisons";
 import Notifications from "./pages/MesCard/Notifications";
 
 function App() {
     const [isMobileView, setIsMobileView] = useState(false);
     const [open, setOpen] = useState(true);
-    const [openModal, setOpenModal] = useState(false);
     const [messagenoti, setMessagenoti] = useState(true);
     const [verifynoti, setVerifynoti] = useState(true);
     const [openModalTrans, setOpenModalTrans] = useState(false);
@@ -58,21 +55,21 @@ function App() {
     const [translateDropdownOpen, setTranslateDropdownOpen] = useState(false);
     const TranslateRef = useRef(null);
     const [isLogedIn, setIsLogedIn] = useState(true);
-    const colisRef = useRef(null);
     const TransRef = useRef(null);
     const location = useLocation();
     const [openPorfileDropdown, setOpenPorfileDropdown] = useState(false);
     const openPorfileDropdownRef = useRef(null);
+    const [hideSideBar, setHideSideBar] = useState(false);
+    const [showSide, setShowSide] = useState(false);
 
     const toggleSidebar = () => {
-        setMovesidebar(!movesidebar);
+        setMovesidebar((prev) => !prev);
+        setHideSideBar(false);
+        setShowSide(false);
     };
     useEffect(() => {
         setMovesidebar(false);
     }, [location]);
-    useEffect(() => {
-        console.log(movesidebar);
-    }, [movesidebar]);
 
     useEffect(() => {
         const handleResize = () => {
@@ -89,6 +86,16 @@ function App() {
             window.removeEventListener("resize", handleResize);
         };
     }, []);
+
+    useEffect(() => {
+        if (location.pathname === "/ajouter-une-annonce") {
+            setShowSide(true);
+            setHideSideBar(true);
+        } else if (location.pathname === "/ajouter-un-trajet") {
+            setShowSide(true);
+            setHideSideBar(true);
+        }
+    }, [location.pathname]);
 
     return (
         <div className="w-full h-screen overflow-y-auto   ">
@@ -110,21 +117,26 @@ function App() {
                     openPorfileDropdownRef={openPorfileDropdownRef}
                     setOpenPorfileDropdown={setOpenPorfileDropdown}
                     toggleSidebar={toggleSidebar}
+                    showSide={showSide}
                 />
 
                 <div className="flex flex-1 h-full">
                     {isLogedIn ? (
                         <>
-                            <InternalSideBarLeft
-                                open={open}
-                                openPorfileDropdown={openPorfileDropdown}
-                                setOpen={setOpen}
-                                isMobileView={isMobileView}
-                                contentRef={contentRef}
-                                movesidebar={movesidebar}
-                                setMovesidebar={setMovesidebar}
-                                translateDropdownOpen={translateDropdownOpen}
-                            />
+                            {!hideSideBar && (
+                                <InternalSideBarLeft
+                                    open={open}
+                                    openPorfileDropdown={openPorfileDropdown}
+                                    setOpen={setOpen}
+                                    isMobileView={isMobileView}
+                                    contentRef={contentRef}
+                                    movesidebar={movesidebar}
+                                    setMovesidebar={setMovesidebar}
+                                    translateDropdownOpen={
+                                        translateDropdownOpen
+                                    }
+                                />
+                            )}
 
                             <div
                                 className="w-full h-full mt-16  lg:ml-[16rem] xl:ml-[16rem] mb-10  "
@@ -205,7 +217,7 @@ function App() {
                                         />
                                         <Route
                                             path="/mes-annonces"
-                                            element={<Notifications />}
+                                            element={<Annonces />}
                                         />
                                         <Route
                                             path="/trajets"
@@ -239,6 +251,14 @@ function App() {
                                         <Route
                                             path="/parrainage/amie"
                                             element={<ShareWithFrend />}
+                                        />
+                                        <Route
+                                            path="/colis"
+                                            element={<ColisList />}
+                                        />
+                                        <Route
+                                            path="/transporteur"
+                                            element={<Transporteur />}
                                         />
                                     </Routes>
                                 </div>
@@ -277,28 +297,30 @@ function App() {
                     <BottomNavBar />
                 </div>
             )}
-            <div
-                className={`bg-white border shadow-md w-60 h-28 fixed z-60 top-[-150px] right-[28%] rounded-lg transition-transform ${
-                    openModal ? " transform translate-y-[200%] delay-8" : ""
+            {/* <div
+                className={`bg-white border shadow-md w-60 h-28 fixed z-60 top-0 right-[28%] rounded-lg transition-transform pointer-events-auto ${
+                    openModal
+                        ? "transform translate-y-[150px] delay-8"
+                        : "transform -translate-y-full"
                 }`}
                 ref={colisRef}>
                 <div className="flex flex-col justify-center items-center gap-4 p-3 h-full">
                     <Link
+                        to="/colis"
                         onClick={() => setOpenModal(false)}
-                        to="/"
                         className="flex items-center justify-start w-full gap-4 px-4">
                         <Inventory2OutlinedIcon />
                         <span>Colis</span>
                     </Link>
                     <Link
+                        to="/transporteur"
                         onClick={() => setOpenModal(false)}
-                        to=""
                         className="flex items-center justify-start w-full gap-4 px-4">
                         <LocalShippingOutlinedIcon />
                         <span>Transporteur</span>
                     </Link>
                 </div>
-            </div>
+            </div> */}
 
             <div
                 className={`bg-white border shadow-md w-60 h-30 fixed z-60 top-[-150px] left-[13%] rounded-lg transition-transform ${

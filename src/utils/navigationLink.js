@@ -1,21 +1,10 @@
-import { MdOutlineDashboard } from "react-icons/md";
-import { RiSettings4Line } from "react-icons/ri";
-import { AiOutlineUser, AiOutlineHeart } from "react-icons/ai";
-import { FiMessageSquare, FiLogOut } from "react-icons/fi";
-
 import AddRoadIcon from "@mui/icons-material/AddRoad";
-import ManageSearchIcon from "@mui/icons-material/ManageSearch";
 import AddIcon from "@mui/icons-material/Add";
 
-import ChatIcon from "@mui/icons-material/Chat";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
-import LocationSearchingOutlinedIcon from "@mui/icons-material/LocationSearchingOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
 import AttachMoneyOutlinedIcon from "@mui/icons-material/AttachMoneyOutlined";
-import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import StickyNote2OutlinedIcon from "@mui/icons-material/StickyNote2Outlined";
 import MarkunreadMailboxOutlinedIcon from "@mui/icons-material/MarkunreadMailboxOutlined";
 import IosShareOutlinedIcon from "@mui/icons-material/IosShareOutlined";
@@ -27,7 +16,6 @@ import { FaRegCreditCard } from "react-icons/fa";
 import { MdOutlineVerified } from "react-icons/md";
 import { IoPersonAddOutline } from "react-icons/io5";
 import { MdOutlineMode } from "react-icons/md";
-import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 
 export const menus = [
     {

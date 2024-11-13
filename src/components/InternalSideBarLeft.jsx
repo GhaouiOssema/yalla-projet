@@ -96,11 +96,11 @@ const InternalSideBarLeft = ({
                                     <Link
                                         key={idx}
                                         to={menu.link}
-                                        onClick={() =>
+                                        onClick={() => {
                                             menu.menu
                                                 ? toggleSubMenu(idx)
-                                                : setOpen(false)
-                                        }
+                                                : setOpen(false);
+                                        }}
                                         className={`relative flex flex-row items-center h-11 focus:outline-none text-gray-600 border-r-4 border-transparent pr-6 ${
                                             location.pathname === menu.link
                                                 ? "bg-gray-100 text-gray-800 border-yellow-400"
