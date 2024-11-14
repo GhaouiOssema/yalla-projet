@@ -1,11 +1,11 @@
 import CardAdd from "./CardAdd";
 
 const AddAnnouncement = () => {
-    return (
-            <CardAdd 
-                name= "Quels objets envoyez-vous ?"
-            />
-    );
+  return (
+    <div className="flex justify-center w-full ">
+      <CardAdd name="Quels objets envoyez-vous ?" />
+    </div>
+  );
 };
 
 export default AddAnnouncement;

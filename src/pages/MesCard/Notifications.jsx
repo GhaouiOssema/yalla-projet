@@ -211,7 +211,7 @@ const Annonces = () => {
               key={annonce.id}
               className=" border  bg-white rounded-lg overflow-hidden relative flex flex-col sm:flex-row items-center"
             >
-              <div className="hidden sm:block sm:w-48 p-2 flex justify-center items-center">
+              <div className="hidden sm:block sm:w-48 p-2 flex justify-center items-center boor">
                 <img
                   src={annonce.photo}
                   alt={`Livraison pour ${annonce.adresse}`}

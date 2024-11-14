@@ -68,7 +68,7 @@ function CardAdd() {
 
   return (
     <>
-      <div className="container w-full lg:w-full lg:px-[20%] md:w-[70%] p-5 mt-3">
+      <div className="container lg:w-full lg:px-[20%] p-5 mt-3">
         {/* Progress Bar */}
         <div className="flex items-center space-x-2 mb-10">
           {Array.from({ length: totalSteps }).map((_, index) => (
