@@ -17,3 +17,4 @@ export { default as IconBreadcrumbs } from "./Breadcrumbs";
 export { default as Carousel } from "./Carousel";
 export { default as Icons } from "./Icons/Icons";
 export { default as DeleteButton } from "./DeleteButton";
+export { default as DateBadge } from "./DateBadge";

@@ -6,8 +6,9 @@ import {
     ArrowDown,
     ArrowDownUp,
     ArrowDownToDot,
+    ArrowLeft,
 } from "lucide-react";
-import React from "react";
+import React, { useRef } from "react";
 
 const TrajetCard = ({
     id,
@@ -23,8 +24,21 @@ const TrajetCard = ({
     allerRetour,
     setIsOpen,
 }) => {
+    const scrollRef = useRef(null);
+
+    const scrollLeft = () => {
+        if (scrollRef.current) {
+            scrollRef.current.scrollBy({ left: -100, behavior: "smooth" });
+        }
+    };
+
+    const scrollRight = () => {
+        if (scrollRef.current) {
+            scrollRef.current.scrollBy({ left: 100, behavior: "smooth" });
+        }
+    };
     return (
-        <div key={id} className="w-full bg-white rounded-lg border p-6 mb-4">
+        <div key={id} className="w-full bg-white rounded-lg border p-3 mb-4">
             <div className="w-full relative">
                 <div className="pb-3">
                     <div className="text-lg font-semibold text-primary">
@@ -33,38 +47,38 @@ const TrajetCard = ({
                 </div>
                 <div className="space-y-4">
                     <div className="flex justify-between items-center">
-                        <div className="flex items-center gap-2">
+                        <div className=" sm:w-full w-fit flex items-center gap-2 mr-2  overflow-x-auto sm:overflow-x-hidden scrollbar-hide  scrollbar-hide  ">
                             {isRegular ? (
-                                <span className="bg-gray-200 text-sm text-gray-800 py-1 px-2 rounded-full flex items-center gap-1">
+                                <span className="bg-gray-200 text-sm text-gray-800 py-1 px-2 rounded-full flex items-center gap-1 whitespace-nowrap">
                                     <Repeat className="h-3 w-3" /> Trajet
                                     régulier
                                 </span>
                             ) : (
-                                <span className="bg-gray-200 text-sm text-gray-800 py-1 px-2 rounded-full flex items-center gap-1">
-                                    <ArrowDown className="h-3 w-3" /> Trajet
+                                <span className="bg-gray-200 text-sm text-gray-800 py-1 px-2 rounded-full flex items-center gap-1 whitespace-nowrap">
+                                    <ArrowDown className="h- 3 w-3" /> Trajet
                                     unique
                                 </span>
                             )}
 
                             {allerRetour ? (
-                                <span className="bg-gray-200 text-sm text-gray-800 py-1 px-2 rounded-full flex items-center gap-1">
+                                <span className="bg-gray-200 text-sm text-gray-800 py-1 px-2 rounded-full flex items-center gap-1 whitespace-nowrap">
                                     <ArrowDownUp className="h-3 w-3" /> Aller -
                                     Retour
                                 </span>
                             ) : (
-                                <span className="bg-gray-200 text-sm text-gray-800 py-1 px-2 rounded-full flex items-center gap-1">
-                                    <ArrowDownToDot className="h-3 w-3" />
-                                    Aller
+                                <span className="bg-gray-200 text-sm text-gray-800 py-1 px-2 rounded-full flex items-center gap-1 whitespace-nowrap">
+                                    <ArrowDownToDot className="h-3 w-3" /> Aller
                                 </span>
                             )}
 
                             {maxPackageSize && (
-                                <span className="bg-gray-200 text-sm text-gray-800 py-1 px-2 rounded-full flex items-center gap-1">
+                                <span className="bg-gray-200 text-sm text-gray-800 py-1 px-2 rounded-full flex items-center gap-1 whitespace-nowrap">
                                     <Package className="h-3 w-3" /> Max:{" "}
                                     {maxPackageSize}
                                 </span>
                             )}
                         </div>
+
                         {isActive && (
                             <span className="bg-emerald-500 text-white text-xs py-1 px-2 rounded-full">
                                 Active
@@ -111,22 +125,23 @@ const TrajetCard = ({
                             </div>
                         </div>
                     </div>
-                    <div className="flex items-center justify-between pt-2">
+                    <div className="flex items-center justify-between py-2">
                         <div className="text-sm">
                             A partir de :{" "}
                             <span className="font-semibold">{price}€</span>
                         </div>
+
+                        <div className="flex items-center space-x-2">
+                            <button className="bg-gray-50 hover:bg-gray-100 text-gray-500 rounded-full p-2">
+                                <FilePenLine className="w-5 h-5" />
+                            </button>
+                            <button
+                                className="text-red-500 hover:text-red-600 p-2"
+                                onClick={() => setIsOpen(true)}>
+                                <Trash2 className="w-5 h-5" />
+                            </button>
+                        </div>
                     </div>
-                </div>
-                <div className="absolute bottom-0 right-4 flex space-x-2">
-                    <button className="bg-gray-50 hover:bg-gray-100 text-gray-500 rounded-full p-2">
-                        <FilePenLine className="w-5 h-5" />
-                    </button>
-                    <button
-                        className="text-red-500 hover:text-red-600 p-2"
-                        onClick={() => setIsOpen(true)}>
-                        <Trash2 className="w-5 h-5" />
-                    </button>
                 </div>
             </div>
         </div>

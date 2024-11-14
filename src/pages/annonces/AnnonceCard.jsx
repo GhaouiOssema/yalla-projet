@@ -1,107 +1,114 @@
 import {
-    Repeat,
     FilePenLine,
     Trash2,
     Package,
-    ArrowDown,
-    ArrowDownUp,
-    ArrowDownToDot,
-    WalletMinimal,
+    Calendar,
+    Ruler,
+    Layers3,
 } from "lucide-react";
-import React from "react";
 import { Link } from "react-router-dom";
+import { DateBadge } from "../../components";
 
 const AnnonceCard = ({
     id,
-    schedule,
     trajet,
-    vehicleType,
-    isRegular,
-    maxPackageSize,
-    isActive,
-    departure,
     stops,
-    arrival,
-    price,
-    allerRetour,
     setIsOpen,
     adresse,
     photo,
     title,
     etat,
+    dateEntre,
+    avantDate,
+    dateFull,
+    dateF,
+    dateE,
+    size,
+    dateA,
+    categorie,
+    dim,
     prix,
 }) => {
     return (
-        <div key={id} className="w-full bg-white rounded-lg border p-6 mb-4">
+        <div key={id} className="w-full bg-white rounded-lg  p-3">
             <div className="w-full relative">
-                <div className="pb-3">
-                    <div className="text-lg font-semibold text-primary">
-                        {schedule} - {vehicleType}
-                    </div>
-                </div>
-                <div className="space-y-4">
-                    <div className="flex items-center gap-5">
+                <div className="space-y-3">
+                    <div className="flex items-center gap-3">
                         <Link
                             to={`/mes-annonces/${title}/${id}`}
-                            className="hidden md:block border border-black p-1 rounded-lg">
+                            className=" hidden sm:block p-2 md:flex justify-center items-center ">
                             <img
                                 src={photo}
                                 alt={`Livraison pour ${adresse}`}
-                                className="hiddem md:flex w-auto h-40 object-contain"
+                                className="hiddem md:flex w-auto h-40 object-contain rounded-lg"
                             />
                         </Link>
-                        <div className="h-full w-full flex flex-col gap-5">
+                        <div className="h-full w-full flex flex-col gap-4 ">
+                            <div className=" flex items-center justify-between">
+                                <div className="text-lg font-semibold text-primary">
+                                    {title}
+                                </div>
+                                <div>
+                                    {etat === "Livré" ? (
+                                        <span className="bg-emerald-500 text-white text-xs py-1 px-2 rounded-full">
+                                            Livré
+                                        </span>
+                                    ) : etat === "En ligne" ? (
+                                        <span className=" bg-green-400 text-white text-xs py-1 px-2 rounded-full">
+                                            En ligne
+                                        </span>
+                                    ) : etat === "En cours" ? (
+                                        <span className="bg-yellow-500 text-white text-xs py-1 px-2 rounded-full">
+                                            En cours
+                                        </span>
+                                    ) : etat === "expiréé " ? (
+                                        <span className="bg-red-500 text-white text-xs py-1 px-2 rounded-full">
+                                            expiréé 
+                                        </span>
+                                    ) : null}
+                                </div>
+                            </div>
                             <div className="flex justify-between items-center">
-                                <div className="flex items-center gap-2">
-                                    {isRegular ? (
-                                        <span className="bg-gray-200 text-sm text-gray-800 py-1 px-2 rounded-full flex items-center gap-1">
-                                            <Repeat className="h-3 w-3" />{" "}
-                                            Trajet régulier
-                                        </span>
-                                    ) : (
-                                        <span className="bg-gray-200 text-sm text-gray-800 py-1 px-2 rounded-full flex items-center gap-1">
-                                            <ArrowDown className="h-3 w-3" />{" "}
-                                            Trajet unique
+                                <div className=" sm:w-full w-fit flex items-center gap-2 mr-2  overflow-x-auto sm:overflow-x-hidden scrollbar-hide  scrollbar-hide  ">
+                                    {dateFull ? (
+                                        <DateBadge
+                                            Icon={Calendar}
+                                            date={dateF}
+                                        />
+                                    ) : avantDate ? (
+                                        <DateBadge
+                                            Icon={Calendar}
+                                            date={dateA}
+                                            condition="avant"
+                                        />
+                                    ) : dateEntre ? (
+                                        <DateBadge
+                                            Icon={Calendar}
+                                            date={dateE}
+                                            condition="entre"
+                                        />
+                                    ) : null}
+
+                                    {size && (
+                                        <span className="bg-gray-200 text-sm text-gray-800 py-1 px-2 rounded-full flex items-center gap-1 whitespace-nowrap">
+                                            {dim ? (
+                                                <Ruler className="h-3 w-3" />
+                                            ) : (
+                                                <Package className="h-3 w-3" />
+                                            )}
+                                            {dim ? `${size}cm` : size}
                                         </span>
                                     )}
 
-                                    {allerRetour ? (
+                                    {categorie && (
                                         <span className="bg-gray-200 text-sm text-gray-800 py-1 px-2 rounded-full flex items-center gap-1">
-                                            <ArrowDownUp className="h-3 w-3" />{" "}
-                                            Aller - Retour
-                                        </span>
-                                    ) : (
-                                        <span className="bg-gray-200 text-sm text-gray-800 py-1 px-2 rounded-full flex items-center gap-1">
-                                            <ArrowDownToDot className="h-3 w-3" />
-                                            Aller
-                                        </span>
-                                    )}
-
-                                    {maxPackageSize && (
-                                        <span className="bg-gray-200 text-sm text-gray-800 py-1 px-2 rounded-full flex items-center gap-1">
-                                            <Package className="h-3 w-3" /> Max:{" "}
-                                            {maxPackageSize}
-                                        </span>
-                                    )}
-                                    
-                                    {maxPackageSize && (
-                                        <span className="bg-gray-200 text-sm text-gray-800 py-1 px-2 rounded-full flex items-center gap-1">
-                                            <Package className="h-3 w-3" /> Max:{" "}
-                                            {maxPackageSize}
+                                            <Layers3 className="h-3 w-3" />{" "}
+                                            {categorie}
                                         </span>
                                     )}
                                 </div>
-                                {etat === "Livré" ? (
-                                    <span className="bg-emerald-500 text-white text-xs py-1 px-2 rounded-full">
-                                        Livré
-                                    </span>
-                                ) : etat === "En cours" ? (
-                                    <span className="bg-yellow-500 text-white text-xs py-1 px-2 rounded-full">
-                                        En cours
-                                    </span>
-                                ) : null}
                             </div>
-                            <div className="flex">
+                            <div className="flex ">
                                 <div className="relative flex flex-col items-center">
                                     <div className="rounded-full w-4 h-4 bg-gray-500 flex items-center justify-center">
                                         <div className="rounded-full w-3/4 h-3/4 bg-white flex items-center justify-center">
@@ -141,22 +148,27 @@ const AnnonceCard = ({
                                     </div>
                                 </div>
                             </div>
-                            <div className="flex items-center justify-start gap-2 pt-2 text-sm">
-                                <WalletMinimal className="h-3 w-3" />
-                                <span className="text-base">500€</span>
+
+                            <div className="flex items-center justify-between ">
+                                <div className="flex items-center justify-start gap-2 text-sm">
+                                    <span className="text-base font-bold">
+                                        {prix}€
+                                    </span>
+                                </div>
+
+                                <div className="flex items-center space-x-2">
+                                    <button className="bg-gray-50 hover:bg-gray-100 text-gray-500 rounded-full p-2">
+                                        <FilePenLine className="w-5 h-5" />
+                                    </button>
+                                    <button
+                                        className="text-red-500 hover:text-red-600 p-2"
+                                        onClick={() => setIsOpen(true)}>
+                                        <Trash2 className="w-5 h-5" />
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="absolute bottom-0 right-4 flex space-x-2">
-                    <button className="bg-gray-50 hover:bg-gray-100 text-gray-500 rounded-full p-2">
-                        <FilePenLine className="w-5 h-5" />
-                    </button>
-                    <button
-                        className="text-red-500 hover:text-red-600 p-2"
-                        onClick={() => setIsOpen(true)}>
-                        <Trash2 className="w-5 h-5" />
-                    </button>
                 </div>
             </div>
         </div>

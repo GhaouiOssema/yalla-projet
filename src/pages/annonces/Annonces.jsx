@@ -3,36 +3,133 @@ import { getData } from "../../components/apiAndFunction/apiService";
 import { API_ENDPOINTS } from "../../components/apiAndFunction/apiEndpoints";
 import { useState } from "react";
 import Button from "../../components/forms/Button";
-import { Calendar, DollarSign, Trash2, FilePenLine } from "lucide-react";
 import IMG from "../../assets/aa.png";
-import { Link } from "react-router-dom";
 import AnnonceCard from "./AnnonceCard";
 import { DeleteButton } from "../../components";
 
 const Annonces = () => {
     const [annonces, setAnnonces] = useState([
         {
-            id: 2,
-            schedule: "Tous les samedis",
-            vehicleType: "Grande voiture (coffre de plus de 400L)",
-            isRegular: false,
+            id: 0,
+            adresse: "Paris, 75008",
+            title: "annonces-1",
+            dateFull: true,
+            dateF: "15 juin",
             photo: IMG,
-            departure: {
-                city: "Paris",
-                postalCode: "75000",
-                country: "France",
+            prix: 350,
+            trajet: {
+                depart: {
+                    ville: "Tunis",
+                    codePostal: "1001",
+                },
+                arrivee: {
+                    ville: "Paris",
+                    codePostal: "75008",
+                },
             },
-            arrival: {
-                city: "Madrid",
-                postalCode: "28000",
-                country: "Espagne",
+            etat: "En cours",
+            poids: "2kg",
+            fragile: false,
+            categorie: "cat1",
+            size: "S",
+        },
+        {
+            id: 1,
+            adresse: "Paris, 75008",
+            title: "annonces-2",
+            dateFull: true,
+            dateF: "6 aout",
+            photo: IMG,
+            prix: 350,
+            trajet: {
+                depart: {
+                    ville: "Tunis",
+                    codePostal: "1001",
+                },
+                arrivee: {
+                    ville: "Paris",
+                    codePostal: "75008",
+                },
             },
-            stops: 0,
-            price: 500,
-            isActive: true,
-            allerRetour: true,
+            etat: "En cours",
+            poids: "2kg",
+            fragile: false,
+            // ou
+            categorie: "cat2",
+            size: "10 x 20 x 30",
+            dim: true,
+        },
+        {
+            id: 2,
+            adresse: "Paris, 75008",
+            title: "annonces-3",
+            dateEntre: true,
+            dateE: ["15 juin", "13 nov"],
+            photo: IMG,
+            prix: 350,
+            trajet: {
+                depart: {
+                    ville: "Tunis",
+                    codePostal: "1001",
+                },
+                arrivee: {
+                    ville: "Paris",
+                    codePostal: "75008",
+                },
+            },
             etat: "Livré",
-            maxPackageSize: "L",
+            poids: "2kg",
+            fragile: false,
+            categorie: "cat3",
+            size: "L",
+        },
+        {
+            id: 3,
+            adresse: "Paris, 75008",
+            avantDate: true,
+            dateA: "15 juin",
+            photo: IMG,
+            title: "annonces-5",
+            prix: 350,
+            trajet: {
+                depart: {
+                    ville: "Tunis",
+                    codePostal: "1001",
+                },
+                arrivee: {
+                    ville: "Paris",
+                    codePostal: "75008",
+                },
+            },
+            etat: "expiréé ",
+            poids: "2kg",
+            fragile: false,
+            categorie: "cat4",
+            size: "XL",
+        },
+        {
+            id: 4,
+            adresse: "Paris, 75008",
+            avantDate: true,
+            dateA: "15 juin",
+            photo: IMG,
+            title: "annonces-5",
+            prix: 350,
+            trajet: {
+                depart: {
+                    ville: "Tunis",
+                    codePostal: "1001",
+                },
+                arrivee: {
+                    ville: "Paris",
+                    codePostal: "75008",
+                },
+            },
+            etat: "expiréé ",
+            poids: "2kg",
+            fragile: false,
+            categorie: "cat5",
+            size: "2XL",
         },
     ]);
     const [error, setError] = useState(null);
@@ -41,7 +138,7 @@ const Annonces = () => {
 
     const fetchAnnonces = async () => {
         try {
-            const response = await getData(API_ENDPOINTS.GET_Annonces); // Fetch the JSON data
+            const response = await getData(""); // Fetch the JSON data
             if (response) {
                 setAnnonces(response); // Assuming the API response has "annonces" key
             } else {
@@ -58,17 +155,6 @@ const Annonces = () => {
     //   fetchAnnonces();
     //   console.log(annonces);
     // }, [annonces]);
-
-    const getEtatColor = (etat) => {
-        switch (etat) {
-            case "En cours":
-                return "bg-yellow-500";
-            case "Livré":
-                return "bg-green-500";
-            case "Annulé":
-                return "bg-red-500";
-        }
-    };
 
     const formatDate = (date) => {
         const d = new Date(date);

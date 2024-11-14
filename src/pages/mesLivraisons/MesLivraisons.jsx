@@ -3,37 +3,40 @@ import { getData } from "../../components/apiAndFunction/apiService";
 import { API_ENDPOINTS } from "../../components/apiAndFunction/apiEndpoints";
 import { MapPin, Clock } from "lucide-react";
 import Button from "../../components/forms/Button";
+import IMG from "../../assets/aa.png";
 
 import { useEffect, useState } from "react";
 import LivraisonsCard from "./LivraisonsCard";
 const MesLivraisons = () => {
     const [livraisons, setLivraisons] = useState([
+        // {
+        //     id: 1,
+        //     schedule: "Tous les lundis, mardis et mercredis",
+        //     vehicleType: "Petite voiture (coffre de moins de 200L)",
+        //     isRegular: true,
+        //     allerRetour: false,
+        //     receiverName: "Jane Smith",
+        //     departure: {
+        //         city: "Versailles",
+        //         postalCode: "78000",
+        //         country: "France",
+        //     },
+        //     arrival: {
+        //         city: "Albarracín",
+        //         postalCode: "44100",
+        //         country: "Espagne",
+        //     },
+        //     stops: 0,
+        //     price: 700,
+        //     isActive: true,
+        //     maxPackageSize: "XL",
+        //     status: "livré",
+        //     deliveryDate: "2024-10-16",
+        // },
         {
-            id: 1,
-            schedule: "Tous les lundis, mardis et mercredis",
-            vehicleType: "Petite voiture (coffre de moins de 200L)",
-            isRegular: true,
-            allerRetour: false,
-            receiverName: "Jane Smith",
-            departure: {
-                city: "Versailles",
-                postalCode: "78000",
-                country: "France",
-            },
-            arrival: {
-                city: "Albarracín",
-                postalCode: "44100",
-                country: "Espagne",
-            },
-            stops: 0,
-            price: 700,
-            isActive: true,
-            maxPackageSize: "XL",
-            status: "livré",
-            deliveryDate: "2024-10-16",
-        },
-        {
+            title: "livraison-1",
             status: "En cours",
+            photo: IMG,
             id: 1,
             schedule: "Tous les lundis, mardis et mercredis",
             vehicleType: "Petite voiture (coffre de moins de 200L)",
@@ -52,7 +55,7 @@ const MesLivraisons = () => {
                 country: "Espagne",
             },
             stops: 0,
-            price: 700,
+            prix: 700,
             isActive: true,
             maxPackageSize: "XL",
         },

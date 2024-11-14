@@ -38,9 +38,7 @@ import MessagesChat from "./pages/messagesChat";
 import AddAnnouncement from "./pages/AddAnnouncement/AddAnnouncement";
 import AddRoute from "./pages/AddRoute/AddRoute";
 
-import RouteListe from "./pages/MesCard/RouteListe";
 import MesLivraisons from "./pages/mesLivraisons/MesLivraisons";
-import Notifications from "./pages/MesCard/Notifications";
 
 function App() {
     const [isMobileView, setIsMobileView] = useState(false);
@@ -107,18 +105,20 @@ function App() {
                 } transition-opacity duration-700`}></div>
 
             <div className="flex flex-col">
-                <Nnavbar
-                    setMovesidebar={setMovesidebar}
-                    messagenoti={messagenoti}
-                    verifynoti={verifynoti}
-                    TranslateRef={TranslateRef}
-                    setTranslateDropdownOpen={setTranslateDropdownOpen}
-                    translateDropdownOpen={translateDropdownOpen}
-                    openPorfileDropdownRef={openPorfileDropdownRef}
-                    setOpenPorfileDropdown={setOpenPorfileDropdown}
-                    toggleSidebar={toggleSidebar}
-                    showSide={showSide}
-                />
+                {isLogedIn && (
+                    <Nnavbar
+                        setMovesidebar={setMovesidebar}
+                        messagenoti={messagenoti}
+                        verifynoti={verifynoti}
+                        TranslateRef={TranslateRef}
+                        setTranslateDropdownOpen={setTranslateDropdownOpen}
+                        translateDropdownOpen={translateDropdownOpen}
+                        openPorfileDropdownRef={openPorfileDropdownRef}
+                        setOpenPorfileDropdown={setOpenPorfileDropdown}
+                        toggleSidebar={toggleSidebar}
+                        showSide={showSide}
+                    />
+                )}
 
                 <div className="flex flex-1 h-full">
                     {isLogedIn ? (

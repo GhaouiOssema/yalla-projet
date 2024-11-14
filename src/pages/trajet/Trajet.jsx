@@ -93,7 +93,13 @@ const Trajet = () => {
 
     return (
         <>
-            <DeleteButton isOpen={isOpen} setIsOpen={setIsOpen} text={"Êtes-vous sûr de vouloir supprimer ce trajet ? Cette action est irréversible."} />
+            <DeleteButton
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                text={
+                    "Êtes-vous sûr de vouloir supprimer ce trajet ? Cette action est irréversible."
+                }
+            />
             <div className="w-full min-h-screen overflow-hidden lg:mt-0 mt-5 xl:p-16 lg:p-12 p-2">
                 <Card
                     name="Mes trajets"
@@ -117,7 +123,7 @@ const Trajet = () => {
                 />
 
                 {/* Last Section: Route Details with Direct Badge Replacement */}
-                <div className="w-full p-4 rounded mt-8 flex flex-col items-center justify-center border bg-gray-50">
+                <div className="w-full rounded mt-8 flex flex-col items-center justify-center ">
                     {trajets.length > 0 ? (
                         trajets.map((props, idx) => (
                             <TrajetCard
