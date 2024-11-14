@@ -1,43 +1,96 @@
 import Card from "../MesCard/Card";
 import { getData } from "../../components/apiAndFunction/apiService";
-import { API_ENDPOINTS } from "../../components/apiAndFunction/apiEndpoints";
-import { MapPin, Clock } from "lucide-react";
 import Button from "../../components/forms/Button";
 import IMG from "../../assets/aa.png";
 
 import { useEffect, useState } from "react";
 import LivraisonsCard from "./LivraisonsCard";
+
 const MesLivraisons = () => {
     const [livraisons, setLivraisons] = useState([
-        // {
-        //     id: 1,
-        //     schedule: "Tous les lundis, mardis et mercredis",
-        //     vehicleType: "Petite voiture (coffre de moins de 200L)",
-        //     isRegular: true,
-        //     allerRetour: false,
-        //     receiverName: "Jane Smith",
-        //     departure: {
-        //         city: "Versailles",
-        //         postalCode: "78000",
-        //         country: "France",
-        //     },
-        //     arrival: {
-        //         city: "Albarracín",
-        //         postalCode: "44100",
-        //         country: "Espagne",
-        //     },
-        //     stops: 0,
-        //     price: 700,
-        //     isActive: true,
-        //     maxPackageSize: "XL",
-        //     status: "livré",
-        //     deliveryDate: "2024-10-16",
-        // },
         {
+            id: 0,
             title: "livraison-1",
-            status: "En cours",
+            schedule: "Tous les lundis, mardis et mercredis",
+            vehicleType: "Petite voiture (coffre de moins de 200L)",
+            isRegular: true,
+            allerRetour: false,
+            receiverName: "Jane Smith",
+            departure: {
+                city: "Versailles",
+                postalCode: "78000",
+                country: "France",
+            },
+            arrival: {
+                city: "Albarracín",
+                postalCode: "44100",
+                country: "Espagne",
+            },
+            stops: 0,
+            prix: 700,
+            isActive: true,
+            maxPackageSize: "XL",
+            etat: "En livraison",
+            photo: IMG,
+            deliveryDate: "2024-10-16",
+        },
+        {
+            title: "livraison-2",
+            etat: "Termineé",
             photo: IMG,
             id: 1,
+            schedule: "Tous les lundis, mardis et mercredis",
+            vehicleType: "Petite voiture (coffre de moins de 200L)",
+            isRegular: true,
+            allerRetour: false,
+            receiverName: "Jane Smith",
+            deliveryDate: "2024-10-16",
+            departure: {
+                city: "Versailles",
+                postalCode: "78000",
+                country: "France",
+            },
+            arrival: {
+                city: "Albarracín",
+                postalCode: "44100",
+                country: "Espagne",
+            },
+            stops: 0,
+            prix: 700,
+            isActive: true,
+            maxPackageSize: "XL",
+        },
+        {
+            title: "livraison-3",
+            etat: "En discussion",
+            photo: IMG,
+            id: 2,
+            schedule: "Tous les lundis, mardis et mercredis",
+            vehicleType: "Petite voiture (coffre de moins de 200L)",
+            isRegular: true,
+            allerRetour: false,
+            receiverName: "Jane Smith",
+            deliveryDate: "2024-10-16",
+            departure: {
+                city: "Versailles",
+                postalCode: "78000",
+                country: "France",
+            },
+            arrival: {
+                city: "Albarracín",
+                postalCode: "44100",
+                country: "Espagne",
+            },
+            stops: 0,
+            prix: 700,
+            isActive: true,
+            maxPackageSize: "XL",
+        },
+        {
+            title: "livraison-4",
+            etat: "Annulée",
+            photo: IMG,
+            id: 3,
             schedule: "Tous les lundis, mardis et mercredis",
             vehicleType: "Petite voiture (coffre de moins de 200L)",
             isRegular: true,
@@ -66,7 +119,7 @@ const MesLivraisons = () => {
 
     const fetchLivraisons = async () => {
         try {
-            const response = await getData("");
+            const response = await getData("votre api");
             if (response) {
                 setLivraisons(response);
             } else {
@@ -81,12 +134,7 @@ const MesLivraisons = () => {
 
     // useEffect(() => {
     //     fetchLivraisons();
-    //     console.log(livraisons);
     // }, [livraisons]);
-
-    // if (loading) {
-    //     return <div>Loading...</div>;
-    // }
 
     if (error) {
         return (

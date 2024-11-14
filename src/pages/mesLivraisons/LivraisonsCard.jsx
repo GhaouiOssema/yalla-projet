@@ -17,20 +17,18 @@ import { Link } from "react-router-dom";
 
 const LivraisonsCard = ({
     id,
-    trajet,
-    stops,
     setIsOpen,
     adresse,
     photo,
     title,
     etat,
     prix,
-    allerRetour,
     isRegular,
     maxPackageSize,
     arrival,
     departure,
     deliveryDate,
+    receiverName,
 }) => {
     return (
         <div key={id} className="w-full bg-white rounded-lg  p-3">
@@ -52,27 +50,27 @@ const LivraisonsCard = ({
                                     {title}
                                 </div>
                                 <div>
-                                    {etat === "Livré" ? (
-                                        <span className="bg-emerald-500 text-white text-xs py-1 px-2 rounded-full">
-                                            Livré
+                                    {etat === "En discussion" ? (
+                                        <span className=" bg-gray-400 text-white text-xs py-1 px-2 rounded-full">
+                                            En discussion
                                         </span>
-                                    ) : etat === "En ligne" ? (
-                                        <span className=" bg-green-400 text-white text-xs py-1 px-2 rounded-full">
-                                            En ligne
+                                    ) : etat === "Termineé" ? (
+                                        <span className="bg-green-500 text-white text-xs py-1 px-2 rounded-full">
+                                            Termineé
                                         </span>
-                                    ) : etat === "En cours" ? (
+                                    ) : etat === "En livraison" ? (
                                         <span className="bg-yellow-500 text-white text-xs py-1 px-2 rounded-full">
-                                            En cours
+                                            En livraison
                                         </span>
-                                    ) : etat === "expiréé " ? (
+                                    ) : etat === "Annulée" ? (
                                         <span className="bg-red-500 text-white text-xs py-1 px-2 rounded-full">
-                                            expiréé 
+                                            Annulée
                                         </span>
                                     ) : null}
                                 </div>
                             </div>
                             <div className="flex justify-between items-center">
-                                <div className="flex items-center gap-2">
+                                <div className=" sm:w-full w-fit flex items-center gap-2 mr-2  overflow-x-auto sm:overflow-x-hidden scrollbar-hide  scrollbar-hide  ">
                                     {isRegular && (
                                         <DateBadge
                                             Icon={Calendar}
@@ -85,6 +83,13 @@ const LivraisonsCard = ({
                                         <span className="bg-gray-200 text-sm text-gray-800 py-1 px-2 rounded-full flex items-center gap-1 whitespace-nowrap">
                                             <Package className="h-3 w-3" />
                                             {maxPackageSize}
+                                        </span>
+                                    )}
+
+                                    {receiverName && (
+                                        <span className="bg-gray-200 text-sm text-gray-800 py-1 px-2 rounded-full flex items-center gap-1 whitespace-nowrap">
+                                            <User className="h-3 w-3" />
+                                            Colis de {receiverName}
                                         </span>
                                     )}
                                 </div>
