@@ -6,46 +6,46 @@
 @tailwind utilities;
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-  scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    scroll-behavior: smooth;
 }
 .focus\:shadow-outline-yellow:focus {
-  box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.5);
-  border-radius: 3px;
+    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.5);
+    border-radius: 3px;
 }
 .boor {
-  @apply border border-black;
+    @apply border border-black;
 }
 ::-webkit-scrollbar {
-  width: 8px; /* Width of the scrollbar */
+    width: 8px; /* Width of the scrollbar */
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Color of the track */
+    background: #f1f1f1; /* Color of the track */
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888; /* Color of the thumb */
+    background: #888; /* Color of the thumb */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; /* Color of the thumb on hover */
+    background: #555; /* Color of the thumb on hover */
 }
 .sticky {
-  position: sticky;
-  top: 0; /* ou toute autre valeur selon votre conception */
+    position: sticky;
+    top: 0; /* ou toute autre valeur selon votre conception */
 }
 
 .hover-bg {
-  transition: background-color 0.3s; /* Transition pour une animation fluide */
+    transition: background-color 0.3s; /* Transition pour une animation fluide */
 }
 
 /* Définition de la couleur de fond lorsque survolé */
 .hover-bg:hover {
-  background-color: #f3f4f6; /* Couleur gray-100 de Tailwind CSS */
+    background-color: #f3f4f6; /* Couleur gray-100 de Tailwind CSS */
 }
 
 .scrollbar-hide::-webkit-scrollbar {

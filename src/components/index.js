@@ -23,3 +23,6 @@ export { default as StatusBadges } from "./badges/StatusBadges";
 export { default as DeleteButtonIcon } from "./button/DeleteButton";
 export { default as ModifyButton } from "./button/ModifyButton";
 export { default as VerficationLayout } from "./verify/VerficationLayout";
+export { default as FilterSidebar } from "./colis/FilterSidebar";
+export { default as MonTrajetList } from "./colis/MonTrajetList";
+export { default as FilterCard } from "./colis/FilterCard";
