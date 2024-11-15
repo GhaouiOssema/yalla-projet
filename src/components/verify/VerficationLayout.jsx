@@ -1,7 +1,13 @@
 import React from "react";
+import PhoneVerification from "./PhoneVerification";
 
 const VerficationLayout = () => {
-  return <div>VerficationLayout include 3 comp</div>;
+  return (
+    <div className="w-ful  ">
+      {" "}
+      <PhoneVerification />
+    </div>
+  );
 };
 
 export default VerficationLayout;

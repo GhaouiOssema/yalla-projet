@@ -8,5 +8,9 @@ import { API_ENDPOINTS } from "../components/apiAndFunction/apiEndpoints";
 import { VerficationLayout } from "../components";
 
 export default function Component() {
-  return <VerficationLayout />;
+  return (
+    <div className="w-full">
+      <VerficationLayout />
+    </div>
+  );
 }
