@@ -22,3 +22,4 @@ export { default as CustomeBadge } from "./badges/CustomeBadge";
 export { default as StatusBadges } from "./badges/StatusBadges";
 export { default as DeleteButtonIcon } from "./button/DeleteButton";
 export { default as ModifyButton } from "./button/ModifyButton";
+export { default as VerficationLayout } from "./verify/VerficationLayout";

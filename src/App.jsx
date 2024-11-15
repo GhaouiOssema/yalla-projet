@@ -92,6 +92,8 @@ function App() {
       setHideSideBar(true);
     } else if (location.pathname === "/transporteur") {
       setHideSideBar(true);
+    } else if (location.pathname === "/verifier") {
+      setHideSideBar(true);
     } else {
       setHideSideBar(false);
     }
