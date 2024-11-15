@@ -1,19 +1,15 @@
 import {
-    Repeat,
-    FilePenLine,
-    Trash2,
     Package,
-    ArrowDown,
-    ArrowDownUp,
-    ArrowDownToDot,
     User,
     Calendar,
-    Ruler,
-    Layers3,
+    Send,
+    MessageCircleMore,
+    MoveRight,
 } from "lucide-react";
 import React from "react";
-import { DateBadge } from "../../components";
+import { DateBadge, StatusBadges, CustomeBadge } from "../../components";
 import { Link } from "react-router-dom";
+import { Button } from "../../components/ui/button";
 
 const LivraisonsCard = ({
     id,
@@ -51,21 +47,25 @@ const LivraisonsCard = ({
                                 </div>
                                 <div>
                                     {etat === "En discussion" ? (
-                                        <span className=" bg-gray-400 text-white text-xs py-1 px-2 rounded-full">
-                                            En discussion
-                                        </span>
+                                        <StatusBadges
+                                            text={etat}
+                                            className="bg-gray-400"
+                                        />
                                     ) : etat === "Termineé" ? (
-                                        <span className="bg-green-500 text-white text-xs py-1 px-2 rounded-full">
-                                            Termineé
-                                        </span>
+                                        <StatusBadges
+                                            text={etat}
+                                            className="bg-green-500"
+                                        />
                                     ) : etat === "En livraison" ? (
-                                        <span className="bg-yellow-500 text-white text-xs py-1 px-2 rounded-full">
-                                            En livraison
-                                        </span>
+                                        <StatusBadges
+                                            text={etat}
+                                            className="bg-yellow-500"
+                                        />
                                     ) : etat === "Annulée" ? (
-                                        <span className="bg-red-500 text-white text-xs py-1 px-2 rounded-full">
-                                            Annulée
-                                        </span>
+                                        <StatusBadges
+                                            text={etat}
+                                            className="bg-red-500"
+                                        />
                                     ) : null}
                                 </div>
                             </div>
@@ -80,36 +80,36 @@ const LivraisonsCard = ({
                                     )}
 
                                     {maxPackageSize && (
-                                        <span className="bg-gray-200 text-sm text-gray-800 py-1 px-2 rounded-full flex items-center gap-1 whitespace-nowrap">
-                                            <Package className="h-3 w-3" />
-                                            {maxPackageSize}
-                                        </span>
+                                        <CustomeBadge
+                                            text={maxPackageSize}
+                                            Icon={Package}
+                                        />
                                     )}
 
                                     {receiverName && (
-                                        <span className="bg-gray-200 text-sm text-gray-800 py-1 px-2 rounded-full flex items-center gap-1 whitespace-nowrap">
-                                            <User className="h-3 w-3" />
-                                            Colis de {receiverName}
-                                        </span>
+                                        <CustomeBadge
+                                            text={`Colis de ${receiverName}`}
+                                            Icon={User}
+                                        />
                                     )}
                                 </div>
                             </div>
                             <div className="flex ">
                                 <div className="relative flex flex-col items-center">
-                                    <div className="rounded-full w-4 h-4 bg-gray-500 flex items-center justify-center">
+                                    <div className="rounded-full w-4 h-4 bg-yellow-500 flex items-center justify-center">
                                         <div className="rounded-full w-3/4 h-3/4 bg-white flex items-center justify-center">
-                                            <div className="rounded-full w-1/2 h-1/2 bg-gray-500" />
+                                            <div className="rounded-full w-1/2 h-1/2 bg-yellow-500" />
                                         </div>
                                     </div>
                                     <div
-                                        className="flex-1 w-0.5 bg-gray-500"
+                                        className="flex-1 w-0.5 bg-yellow-500"
                                         style={{
                                             height: "calc(100% - 2rem)",
                                         }}
                                     />
-                                    <div className="relative rounded-full w-4 h-4 bg-gray-500 flex items-center justify-center">
+                                    <div className="relative rounded-full w-4 h-4 bg-yellow-500 flex items-center justify-center">
                                         <div className="rounded-full w-3/4 h-3/4 bg-white flex items-center justify-center">
-                                            <div className="rounded-full w-1/2 h-1/2 bg-gray-500" />
+                                            <div className="rounded-full w-1/2 h-1/2 bg-yellow-500" />
                                         </div>
                                     </div>
                                 </div>
@@ -137,15 +137,10 @@ const LivraisonsCard = ({
                                     </span>
                                 </div>
 
-                                <div className="flex items-center space-x-2">
-                                    <button className="bg-gray-50 hover:bg-gray-100 text-gray-500 rounded-full p-2">
-                                        <FilePenLine className="w-5 h-5" />
-                                    </button>
-                                    <button
-                                        className="text-red-500 hover:text-red-600 p-2"
-                                        onClick={() => setIsOpen(true)}>
-                                        <Trash2 className="w-5 h-5" />
-                                    </button>
+                                <div className="flex items-center space-x-2 cursor-pointer ">
+                                    
+                                    
+                                    <MoveRight className="w-8 h-8  mr-3 text-yellow-500  hover:text-yellow-600" />
                                 </div>
                             </div>
                         </div>

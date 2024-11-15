@@ -6,9 +6,14 @@ import {
     ArrowDown,
     ArrowDownUp,
     ArrowDownToDot,
-    ArrowLeft,
 } from "lucide-react";
-import React, { useRef } from "react";
+import { useRef } from "react";
+import {
+    CustomeBadge,
+    DeleteButtonIcon,
+    ModifyButton,
+    StatusBadges,
+} from "../../components";
 
 const TrajetCard = ({
     id,
@@ -49,40 +54,42 @@ const TrajetCard = ({
                     <div className="flex justify-between items-center">
                         <div className=" sm:w-full w-fit flex items-center gap-2 mr-2  overflow-x-auto sm:overflow-x-hidden scrollbar-hide  scrollbar-hide  ">
                             {isRegular ? (
-                                <span className="bg-gray-200 text-sm text-gray-800 py-1 px-2 rounded-full flex items-center gap-1 whitespace-nowrap">
-                                    <Repeat className="h-3 w-3" /> Trajet
-                                    régulier
-                                </span>
+                                <CustomeBadge
+                                    text={"Trajet régulier"}
+                                    Icon={Repeat}
+                                />
                             ) : (
-                                <span className="bg-gray-200 text-sm text-gray-800 py-1 px-2 rounded-full flex items-center gap-1 whitespace-nowrap">
-                                    <ArrowDown className="h- 3 w-3" /> Trajet
-                                    unique
-                                </span>
+                                <CustomeBadge
+                                    text={"Trajet unique"}
+                                    Icon={ArrowDown}
+                                />
                             )}
 
                             {allerRetour ? (
-                                <span className="bg-gray-200 text-sm text-gray-800 py-1 px-2 rounded-full flex items-center gap-1 whitespace-nowrap">
-                                    <ArrowDownUp className="h-3 w-3" /> Aller -
-                                    Retour
-                                </span>
+                                <CustomeBadge
+                                    text={"Aller - Retour"}
+                                    Icon={ArrowDownUp}
+                                />
                             ) : (
-                                <span className="bg-gray-200 text-sm text-gray-800 py-1 px-2 rounded-full flex items-center gap-1 whitespace-nowrap">
-                                    <ArrowDownToDot className="h-3 w-3" /> Aller
-                                </span>
+                                <CustomeBadge
+                                    text={"Aller"}
+                                    Icon={ArrowDownToDot}
+                                />
                             )}
 
                             {maxPackageSize && (
-                                <span className="bg-gray-200 text-sm text-gray-800 py-1 px-2 rounded-full flex items-center gap-1 whitespace-nowrap">
-                                    <Package className="h-3 w-3" /> Max:{" "}
-                                    {maxPackageSize}
-                                </span>
+                                <CustomeBadge
+                                    text={`MAX: ${maxPackageSize}`}
+                                    Icon={Package}
+                                />
                             )}
                         </div>
 
                         {isActive && (
-                            <span className="bg-emerald-500 text-white text-xs py-1 px-2 rounded-full">
-                                Active
-                            </span>
+                            <StatusBadges
+                                text="Active"
+                                className="bg-emerald-500"
+                            />
                         )}
                     </div>
                     <div className="flex">
@@ -132,14 +139,11 @@ const TrajetCard = ({
                         </div>
 
                         <div className="flex items-center space-x-2">
-                            <button className="bg-gray-50 hover:bg-gray-100 text-gray-500 rounded-full p-2">
-                                <FilePenLine className="w-5 h-5" />
-                            </button>
-                            <button
-                                className="text-red-500 hover:text-red-600 p-2"
-                                onClick={() => setIsOpen(true)}>
-                                <Trash2 className="w-5 h-5" />
-                            </button>
+                            <ModifyButton Icon={FilePenLine} />
+                            <DeleteButtonIcon
+                                Icon={Trash2}
+                                setIsOpen={setIsOpen}
+                            />
                         </div>
                     </div>
                 </div>

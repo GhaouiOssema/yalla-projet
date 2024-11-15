@@ -27,7 +27,7 @@ const Annonces = () => {
                     codePostal: "75008",
                 },
             },
-            etat: "En cours",
+            etat: "En ligne",
             poids: "2kg",
             fragile: false,
             categorie: "cat1",

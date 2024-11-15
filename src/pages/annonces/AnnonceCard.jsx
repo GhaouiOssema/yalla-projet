@@ -7,7 +7,13 @@ import {
     Layers3,
 } from "lucide-react";
 import { Link } from "react-router-dom";
-import { DateBadge } from "../../components";
+import {
+    CustomeBadge,
+    DateBadge,
+    DeleteButtonIcon,
+    ModifyButton,
+    StatusBadges,
+} from "../../components";
 
 const AnnonceCard = ({
     id,
@@ -50,21 +56,25 @@ const AnnonceCard = ({
                                 </div>
                                 <div>
                                     {etat === "Livré" ? (
-                                        <span className="bg-emerald-500 text-white text-xs py-1 px-2 rounded-full">
-                                            Livré
-                                        </span>
+                                        <StatusBadges
+                                            text={etat}
+                                            className="bg-emerald-500"
+                                        />
                                     ) : etat === "En ligne" ? (
-                                        <span className=" bg-green-400 text-white text-xs py-1 px-2 rounded-full">
-                                            En ligne
-                                        </span>
+                                        <StatusBadges
+                                            text={etat}
+                                            className="bg-green-400"
+                                        />
                                     ) : etat === "En cours" ? (
-                                        <span className="bg-yellow-500 text-white text-xs py-1 px-2 rounded-full">
-                                            En cours
-                                        </span>
+                                        <StatusBadges
+                                            text={etat}
+                                            className="bg-yellow-500"
+                                        />
                                     ) : etat === "expiréé " ? (
-                                        <span className="bg-red-500 text-white text-xs py-1 px-2 rounded-full">
-                                            expiréé 
-                                        </span>
+                                        <StatusBadges
+                                            text={etat}
+                                            className="bg-red-500"
+                                        />
                                     ) : null}
                                 </div>
                             </div>
@@ -90,21 +100,17 @@ const AnnonceCard = ({
                                     ) : null}
 
                                     {size && (
-                                        <span className="bg-gray-200 text-sm text-gray-800 py-1 px-2 rounded-full flex items-center gap-1 whitespace-nowrap">
-                                            {dim ? (
-                                                <Ruler className="h-3 w-3" />
-                                            ) : (
-                                                <Package className="h-3 w-3" />
-                                            )}
-                                            {dim ? `${size}cm` : size}
-                                        </span>
+                                        <CustomeBadge
+                                            text={dim ? `${size}cm` : size}
+                                            Icon={dim ? Ruler : Package}
+                                        />
                                     )}
 
                                     {categorie && (
-                                        <span className="bg-gray-200 text-sm text-gray-800 py-1 px-2 rounded-full flex items-center gap-1">
-                                            <Layers3 className="h-3 w-3" />{" "}
-                                            {categorie}
-                                        </span>
+                                        <CustomeBadge
+                                            text={categorie}
+                                            Icon={Layers3}
+                                        />
                                     )}
                                 </div>
                             </div>
@@ -157,14 +163,11 @@ const AnnonceCard = ({
                                 </div>
 
                                 <div className="flex items-center space-x-2">
-                                    <button className="bg-gray-50 hover:bg-gray-100 text-gray-500 rounded-full p-2">
-                                        <FilePenLine className="w-5 h-5" />
-                                    </button>
-                                    <button
-                                        className="text-red-500 hover:text-red-600 p-2"
-                                        onClick={() => setIsOpen(true)}>
-                                        <Trash2 className="w-5 h-5" />
-                                    </button>
+                                    <ModifyButton Icon={FilePenLine} />
+                                    <DeleteButtonIcon
+                                        Icon={Trash2}
+                                        setIsOpen={setIsOpen}
+                                    />
                                 </div>
                             </div>
                         </div>
