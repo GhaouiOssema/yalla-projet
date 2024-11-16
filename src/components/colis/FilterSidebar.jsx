@@ -15,6 +15,13 @@ const FilterSidebar = ({
     setStartDate,
     endDate,
     setEndDate,
+    handleSizeChange,
+    selectedSizes,
+    priceRange,
+    setPriceRange,
+    setSelectedManutentionTypes,
+    selectedManutentionTypes,
+    handleCheckboxChange,
 }) => {
     return (
         <div className="space-y-6">
@@ -24,14 +31,18 @@ const FilterSidebar = ({
                     className="w-full p-2 border rounded-md"
                     value={selectedCategory}
                     onChange={(e) => setSelectedCategory(e.target.value)}>
-                    <option value="">Sélectionner une catégorie</option>
-                    <option value="electronics">Électronique</option>
-                    <option value="clothing">Vêtements</option>
-                    <option value="furniture">Meubles</option>
-                    <option value="books">Livres</option>
-                    <option value="food">Alimentation & Boissons</option>
-                    <option value="toys">Jouets & Jeux</option>
-                    <option value="sports">Équipement sportif</option>
+                    <option value="">Choisir une catégorie</option>
+                    <option value="électronique">Électronique</option>
+                    <option value="vêtements">Vêtements</option>
+                    <option value="mobilier">Mobilier</option>
+                    <option value="livres">Livres</option>
+                    <option value="alimentation">
+                        Alimentation & Boissons
+                    </option>
+                    <option value="jouets">Jouets & Jeux</option>
+                    <option value="equipement-sportif">
+                        Équipement Sportif
+                    </option>
                 </select>
             </div>
 
@@ -43,6 +54,8 @@ const FilterSidebar = ({
                             <input
                                 type="checkbox"
                                 className="appearance-none w-6 h-6 border border-gray-300 rounded checked:bg-yellow-500 checked:border-yellow-500 relative checked:after:content-['✔'] checked:after:absolute checked:after:text-white checked:after:left-1/2 checked:after:top-1/2 checked:after:transform checked:after:-translate-x-1/2 checked:after:-translate-y-1/2"
+                                checked={selectedSizes.includes(size)} // Control the checkbox state
+                                onChange={() => handleSizeChange(size)} // Update state on change
                             />
                             <span>{size}</span>
                         </label>
@@ -86,11 +99,25 @@ const FilterSidebar = ({
                     <input
                         type="number"
                         placeholder="Min"
+                        value={priceRange.min}
+                        onChange={(e) =>
+                            setPriceRange({
+                                ...priceRange,
+                                min: e.target.value,
+                            })
+                        }
                         className="w-1/2 p-2 border rounded-md"
                     />
                     <input
                         type="number"
                         placeholder="Max"
+                        value={priceRange.max}
+                        onChange={(e) =>
+                            setPriceRange({
+                                ...priceRange,
+                                max: e.target.value,
+                            })
+                        }
                         className="w-1/2 p-2 border rounded-md"
                     />
                 </div>
@@ -233,6 +260,12 @@ const FilterSidebar = ({
                     <label className="flex items-center gap-2">
                         <input
                             type="checkbox"
+                            checked={selectedManutentionTypes.includes(
+                                "Au pied du véhicule"
+                            )}
+                            onChange={(e) =>
+                                handleCheckboxChange(e, "Au pied du véhicule")
+                            }
                             className="appearance-none w-6 h-6 border border-gray-300 rounded checked:bg-yellow-500 checked:border-yellow-500 relative checked:after:content-['✔'] checked:after:absolute checked:after:text-white checked:after:left-1/2 checked:after:top-1/2 checked:after:transform checked:after:-translate-x-1/2 checked:after:-translate-y-1/2"
                         />
                         <span>Au pied du véhicule</span>
@@ -240,6 +273,15 @@ const FilterSidebar = ({
                     <label className="flex items-center gap-2">
                         <input
                             type="checkbox"
+                            checked={selectedManutentionTypes.includes(
+                                "Manutention - 1 personne"
+                            )}
+                            onChange={(e) =>
+                                handleCheckboxChange(
+                                    e,
+                                    "Manutention - 1 personne"
+                                )
+                            }
                             className="appearance-none w-6 h-6 border border-gray-300 rounded checked:bg-yellow-500 checked:border-yellow-500 relative checked:after:content-['✔'] checked:after:absolute checked:after:text-white checked:after:left-1/2 checked:after:top-1/2 checked:after:transform checked:after:-translate-x-1/2 checked:after:-translate-y-1/2"
                         />
                         <span>Manutention - 1 personne</span>
@@ -247,6 +289,15 @@ const FilterSidebar = ({
                     <label className="flex items-center gap-2">
                         <input
                             type="checkbox"
+                            checked={selectedManutentionTypes.includes(
+                                "Manutention - 2 personnes"
+                            )}
+                            onChange={(e) =>
+                                handleCheckboxChange(
+                                    e,
+                                    "Manutention - 2 personnes"
+                                )
+                            }
                             className="appearance-none w-6 h-6 border border-gray-300 rounded checked:bg-yellow-500 checked:border-yellow-500 relative checked:after:content-['✔'] checked:after:absolute checked:after:text-white checked:after:left-1/2 checked:after:top-1/2 checked:after:transform checked:after:-translate-x-1/2 checked:after:-translate-y-1/2"
                         />
                         <span>Manutention - 2 personnes</span>

@@ -1,11 +1,13 @@
 import { useState, useRef, useEffect } from "react";
 import { MapPin, Plus, X, Filter } from "lucide-react";
 import { FilterCard, FilterSidebar, MonTrajetList } from "../components";
+import axios from "axios";
 
 export default function PackageListingDelivery() {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("");
     const [weightRange, setWeightRange] = useState({ min: "", max: "" });
+    const [priceRange, setPriceRange] = useState({ min: "", max: "" });
     const [routeType, setRouteType] = useState("around");
     const [city, setCity] = useState("");
     const [radius, setRadius] = useState(10);
@@ -18,35 +20,158 @@ export default function PackageListingDelivery() {
     const [endDate, setEndDate] = useState("");
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const filterRef = useRef(null);
+    const [selectedSizes, setSelectedSizes] = useState([]);
+    const [selectedManutentionTypes, setSelectedManutentionTypes] = useState(
+        []
+    );
+
     const [cartData, setCartData] = useState([
         {
             imageUrl:
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJOyWHuKfjjud0QNsrNJ1YTjgLOwG3-MJ5DlnwEXcH-j7ZSvoFJyCLfgz5Br4H7Eqn96o&usqp=CAU",
-            postedTime: "1 hour ago",
+            postedTime: "Il y a 1 heure",
             discussions: 12,
-            title: "Large Electronics Package",
+            title: "Électronique Volumineuse",
             weight: "15 kg",
             distance: "500 km",
-            price: "$150",
+            price: "150 €",
             description:
-                "Large package containing various electronic items. Requires careful handling and temperature-controlled environment...",
-            tags: ["Electronics", "Fragile", "Express Delivery"],
+                "Colis volumineux contenant divers articles électroniques. Nécessite une manipulation soigneuse et un environnement à température contrôlée.",
+            tags: [
+                "Électronique",
+                "Fragile",
+                "Livraison Express",
+                "Livraison Standard",
+                "Colis Volumineux",
+            ],
+            size: ["L", "S"],
+            city: "Paris",
+            dateCondition: "",
+            date: "15 juin", // Updated to ISO format
         },
         {
             imageUrl:
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJOyWHuKfjjud0QNsrNJ1YTjgLOwG3-MJ5DlnwEXcH-j7ZSvoFJyCLfgz5Br4H7Eqn96o&usqp=CAU",
-            postedTime: "3 hours ago",
-            discussions: 8,
-            title: "Small Document Package",
-            weight: "1 kg",
-            distance: "100 km",
-            price: "$30",
+            postedTime: "Il y a 3 heures",
+            discussions: 5,
+            title: "Colis de Vêtements",
+            weight: "7 kg",
+            distance: "300 km",
+            price: "80 €",
             description:
-                "Contains important documents. Needs to be delivered urgently.",
-            tags: ["Documents", "Urgent"],
+                "Colis contenant des vêtements divers, nécessite un emballage standard et une livraison classique.",
+            tags: ["Vêtements", "Livraison Standard", "Colis Léger", "Mode"],
+            size: ["L", "M"],
+            city: "Marseille",
+            dateCondition: "",
+            date: "20 juin",
         },
-        // Add more card data objects as needed
+        {
+            imageUrl:
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJOyWHuKfjjud0QNsrNJ1YTjgLOwG3-MJ5DlnwEXcH-j7ZSvoFJyCLfgz5Br4H7Eqn96o&usqp=CAU",
+            postedTime: "Il y a 5 heures",
+            discussions: 8,
+            title: "Ensemble de Mobilier",
+            weight: "50 kg",
+            distance: "200 km",
+            price: "300 €",
+            description:
+                "Un ensemble de mobilier comprenant des chaises et des tables, nécessite une manutention robuste.",
+            tags: [
+                "Mobilier",
+                "Lourd",
+                "Livraison Standard",
+                "Meubles",
+                "Livraison Express",
+            ],
+            size: ["2XL"],
+            city: "Lyon",
+            dateCondition: "entre",
+            date: ["15 juin", "13 nov"],
+        },
+        {
+            imageUrl:
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJOyWHuKfjjud0QNsrNJ1YTjgLOwG3-MJ5DlnwEXcH-j7ZSvoFJyCLfgz5Br4H7Eqn96o&usqp=CAU",
+            postedTime: "Il y a 2 jours",
+            discussions: 3,
+            title: "Livraison de Matériel de Bureau",
+            weight: "25 kg",
+            distance: "150 km",
+            price: "120 €",
+            description:
+                "Envoi de matériel de bureau lourd, avec des articles tels que des imprimantes et des chaises.",
+            tags: [
+                "Bureau",
+                "Livraison Standard",
+                "Livraison Express",
+                "Lourd",
+            ],
+            size: ["M", "L"],
+            city: "Toulouse",
+            dateCondition: "entre",
+            date: ["15 nov", "17 nov"],
+        },
+        {
+            imageUrl:
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJOyWHuKfjjud0QNsrNJ1YTjgLOwG3-MJ5DlnwEXcH-j7ZSvoFJyCLfgz5Br4H7Eqn96o&usqp=CAU",
+            postedTime: "Il y a 6 heures",
+            discussions: 10,
+            title: "Cartons de Déménagement",
+            weight: "40 kg",
+            distance: "400 km",
+            price: "200 €",
+            description:
+                "Colis de cartons pour un déménagement. Les articles sont répartis dans plusieurs petits cartons.",
+            tags: [
+                "Déménagement",
+                "Livraison Standard",
+                "Cartons",
+                "Colis Volumineux",
+            ],
+            size: ["XL", "L"],
+            city: "Bordeaux",
+            dateCondition: "avant",
+            date: "07 dec",
+        },
+        {
+            imageUrl:
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJOyWHuKfjjud0QNsrNJ1YTjgLOwG3-MJ5DlnwEXcH-j7ZSvoFJyCLfgz5Br4H7Eqn96o&usqp=CAU",
+            postedTime: "Il y a 4 heures",
+            discussions: 7,
+            title: "Livraison de Vélo Électrique",
+            weight: "20 kg",
+            distance: "100 km",
+            price: "450 €",
+            description:
+                "Vélo électrique, besoin de manipulation soignée pour une livraison rapide.",
+            tags: [
+                "Vélo",
+                "Transport",
+                "Livraison Express",
+                "Livraison Standard",
+            ],
+            size: ["L", "S"],
+            city: "Nice",
+            dateCondition: "avant",
+            date: "06 dec",
+        },
     ]);
+
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    // useEffect(() => {
+    //     fetchData();
+    // }, [livraisons]);
+
+    const handleSizeChange = (size) => {
+        setSelectedSizes(
+            (prevSelectedSizes) =>
+                prevSelectedSizes.includes(size)
+                    ? prevSelectedSizes.filter((s) => s !== size) // Remove size if already selected
+                    : [...prevSelectedSizes, size] // Add size if not already selected
+        );
+    };
 
     const handleAddStop = () => {
         if (stops.length < 5) {
@@ -89,6 +214,157 @@ export default function PackageListingDelivery() {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, []);
+
+    const parseCustomDate = (dateString) => {
+        if (typeof dateString !== "string") {
+            console.error("Invalid date format (not a string):", dateString);
+            return null;
+        }
+        const months = {
+            janvier: "01",
+            février: "02",
+            mars: "03",
+            avril: "04",
+            mai: "05",
+            juin: "06",
+            juillet: "07",
+            août: "08",
+            septembre: "09",
+            octobre: "10",
+            novembre: "11",
+            décembre: "12",
+        };
+
+        if (!dateString) {
+            console.error("Invalid date string:", dateString);
+            return null;
+        }
+
+        const [day, month] = dateString.toLowerCase().split(" ");
+        const monthNumber = months[month];
+        if (!monthNumber) {
+            console.error("Invalid month in date string:", dateString);
+            return null;
+        }
+
+        const date = new Date(`2024-${monthNumber}-${day.padStart(2, "0")}`); // assuming the year is 2024
+        if (isNaN(date.getTime())) {
+            console.error("Invalid date:", date);
+            return null;
+        }
+
+        return date;
+    };
+
+    const filteredData = cartData.filter((item) => {
+        // Ensure all filters are lowercase for case-insensitive comparison
+        const cityMatch = city
+            ? item.city.toLowerCase().includes(city.toLowerCase())
+            : true;
+
+        const tagMatch = selectedCategory
+            ? item.tags.some(
+                  (tag) => tag.toLowerCase() === selectedCategory.toLowerCase()
+              )
+            : true;
+
+        const sizeMatch =
+            selectedSizes.length > 0
+                ? (Array.isArray(item.size) ? item.size : [item.size]).some(
+                      (size) => selectedSizes.includes(size)
+                  )
+                : true;
+
+        // Handle weight range filter (min and max)
+        const weight = parseFloat(item.weight.split(" ")[0]); // Assuming weight is a string like "15 kg"
+        const weightMinMatch = weightRange?.min
+            ? weight >= parseFloat(weightRange.min)
+            : true; // If min is set, check if weight is greater than or equal to min
+
+        const weightMaxMatch = weightRange?.max
+            ? weight <= parseFloat(weightRange.max)
+            : true; // If max is set, check if weight is less than or equal to max
+
+        const price = parseFloat(item.price); // Assuming item.price is a number or string like "20"
+        const priceMinMatch = priceRange.min
+            ? price >= parseFloat(priceRange.min)
+            : true; // If min is set, check if price is greater than or equal to min
+
+        const priceMaxMatch = priceRange.max
+            ? price <= parseFloat(priceRange.max)
+            : true;
+
+        const detourMatch =
+            item.distance <= detourDistance || detourDistance === 0;
+
+        const itemDate = parseCustomDate(item.date);
+        if (!itemDate) return false; // Skip invalid dates
+
+        const startDateParsed = new Date(startDate);
+
+        if (
+            isNaN(new Date(endDate).getTime()) ||
+            isNaN(new Date(endDate).getTime())
+        ) {
+            console.error("Invalid startDate or endDate", startDate, endDate);
+            return false;
+        }
+
+        const deliveryDateMatch = (() => {
+            if (item.dateCondition === "") {
+                const startDateParsed = new Date(startDate);
+                return itemDate < startDateParsed;
+            } else if (item.dateCondition === "avant") {
+                const startDateParsed = new Date(startDate);
+                return (
+                    itemDate.toISOString().split("T")[0] ===
+                    startDateParsed.toISOString().split("T")[0]
+                );
+            } else if (
+                item.dateCondition === "entre" &&
+                Array.isArray(item.date)
+            ) {
+                const startDateParsed = new Date(parseCustomDate(item.date[0]));
+                const endDateParsed = new Date(parseCustomDate(item.date[1]));
+                return (
+                    startDateParsed >= new Date(startDate) &&
+                    endDateParsed <= new Date(endDate)
+                );
+            }
+            return true; // If no condition, consider it as true
+        })();
+
+        const manutentionMatch =
+            (selectedManutentionTypes.includes("Au pied du véhicule") &&
+                item.manutentionType === "Au pied du véhicule") ||
+            (selectedManutentionTypes.includes("Manutention - 1 personne") &&
+                item.manutentionType === "Manutention - 1 personne") ||
+            (selectedManutentionTypes.includes("Manutention - 2 personnes") &&
+                item.manutentionType === "Manutention - 2 personnes") ||
+            selectedManutentionTypes.length === 0; // If no manutention type is selected, match all
+
+        return (
+            cityMatch &&
+            tagMatch &&
+            sizeMatch &&
+            weightMinMatch &&
+            weightMaxMatch &&
+            priceMinMatch &&
+            priceMaxMatch &&
+            detourMatch &&
+            deliveryDateMatch &&
+            manutentionMatch
+        );
+    });
+
+    const handleCheckboxChange = (e, type) => {
+        setSelectedManutentionTypes(
+            (prev) =>
+                e.target.checked
+                    ? [...prev, type] // Add type if checked
+                    : prev.filter((item) => item !== type) // Remove type if unchecked
+        );
+    };
 
     return (
         <div className="flex justify-center w-full ">
@@ -250,6 +526,17 @@ export default function PackageListingDelivery() {
                                     handleDetourDistanceChange
                                 }
                                 filterRef={filterRef}
+                                selectedSizes={selectedSizes}
+                                handleSizeChange={handleSizeChange}
+                                priceRange={priceRange}
+                                setPriceRange={setPriceRange}
+                                selectedManutentionTypes={
+                                    selectedManutentionTypes
+                                }
+                                setSelectedManutentionTypes={
+                                    setSelectedManutentionTypes
+                                }
+                                handleCheckboxChange={handleCheckboxChange}
                             />
                         </div>
 
@@ -302,7 +589,10 @@ export default function PackageListingDelivery() {
 
                         {/* Package Listings */}
                         <div className="space-y-4">
-                            {cartData.map((item, idx) => (
+                            {(filteredData.length > 0
+                                ? filteredData
+                                : cartData
+                            ).map((item, idx) => (
                                 <FilterCard key={idx} data={item} />
                             ))}
                         </div>

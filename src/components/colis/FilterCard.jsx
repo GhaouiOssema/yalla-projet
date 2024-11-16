@@ -1,4 +1,5 @@
 import { Heart, Package, Truck } from "lucide-react";
+import DateBadge from "../badges/DateBadge";
 
 const FilterCard = ({ data }) => {
     return (
@@ -25,7 +26,12 @@ const FilterCard = ({ data }) => {
                                 </span>
                             </div>
                             <h2 className="text-xl font-semibold mb-2">
-                                {data.title}
+                                {data.title}{" "}
+                                <DateBadge
+                                    date={data.date}
+                                    Icon={Package}
+                                    condition={data.dateCondition}
+                                />
                             </h2>
                             <div className="flex justify-between items-start mb-3">
                                 <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600">
