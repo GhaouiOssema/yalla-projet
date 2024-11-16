@@ -19,7 +19,6 @@ const FilterSidebar = ({
     selectedSizes,
     priceRange,
     setPriceRange,
-    setSelectedManutentionTypes,
     selectedManutentionTypes,
     handleCheckboxChange,
 }) => {
@@ -260,7 +259,7 @@ const FilterSidebar = ({
                     <label className="flex items-center gap-2">
                         <input
                             type="checkbox"
-                            checked={selectedManutentionTypes.includes(
+                            checked={selectedManutentionTypes?.includes(
                                 "Au pied du véhicule"
                             )}
                             onChange={(e) =>
@@ -288,7 +287,6 @@ const FilterSidebar = ({
                     </label>
                     <label className="flex items-center gap-2">
                         <input
-                            type="checkbox"
                             checked={selectedManutentionTypes.includes(
                                 "Manutention - 2 personnes"
                             )}
@@ -298,6 +296,7 @@ const FilterSidebar = ({
                                     "Manutention - 2 personnes"
                                 )
                             }
+                            type="checkbox"
                             className="appearance-none w-6 h-6 border border-gray-300 rounded checked:bg-yellow-500 checked:border-yellow-500 relative checked:after:content-['✔'] checked:after:absolute checked:after:text-white checked:after:left-1/2 checked:after:top-1/2 checked:after:transform checked:after:-translate-x-1/2 checked:after:-translate-y-1/2"
                         />
                         <span>Manutention - 2 personnes</span>

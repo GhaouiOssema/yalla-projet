@@ -1,5 +1,6 @@
 import { Heart, Package, Truck } from "lucide-react";
 import DateBadge from "../badges/DateBadge";
+import StatusBadges from "../badges/StatusBadges";
 
 const FilterCard = ({ data }) => {
     return (
@@ -31,6 +32,10 @@ const FilterCard = ({ data }) => {
                                     date={data.date}
                                     Icon={Package}
                                     condition={data.dateCondition}
+                                />
+                                <StatusBadges
+                                    text={data.manutentionType}
+                                    className="bg-red-600"
                                 />
                             </h2>
                             <div className="flex justify-between items-start mb-3">

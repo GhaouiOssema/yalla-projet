@@ -21,10 +21,6 @@ export default function PackageListingDelivery() {
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const filterRef = useRef(null);
     const [selectedSizes, setSelectedSizes] = useState([]);
-    const [selectedManutentionTypes, setSelectedManutentionTypes] = useState(
-        []
-    );
-
     const [cartData, setCartData] = useState([
         {
             imageUrl:
@@ -47,7 +43,8 @@ export default function PackageListingDelivery() {
             size: ["L", "S"],
             city: "Paris",
             dateCondition: "",
-            date: "15 juin", // Updated to ISO format
+            date: "15 juin",
+            manutentionType: "Au pied du véhicule", // Added manutentionType
         },
         {
             imageUrl:
@@ -65,6 +62,7 @@ export default function PackageListingDelivery() {
             city: "Marseille",
             dateCondition: "",
             date: "20 juin",
+            manutentionType: "Manutention - 1 personne", // Added manutentionType
         },
         {
             imageUrl:
@@ -88,6 +86,7 @@ export default function PackageListingDelivery() {
             city: "Lyon",
             dateCondition: "entre",
             date: ["15 juin", "13 nov"],
+            manutentionType: "Manutention - 2 personnes", // Added manutentionType
         },
         {
             imageUrl:
@@ -110,6 +109,7 @@ export default function PackageListingDelivery() {
             city: "Toulouse",
             dateCondition: "entre",
             date: ["15 nov", "17 nov"],
+            manutentionType: "Manutention - 1 personne", // Added manutentionType
         },
         {
             imageUrl:
@@ -132,6 +132,7 @@ export default function PackageListingDelivery() {
             city: "Bordeaux",
             dateCondition: "avant",
             date: "07 dec",
+            manutentionType: "Manutention - 2 personnes", // Added manutentionType
         },
         {
             imageUrl:
@@ -154,11 +155,16 @@ export default function PackageListingDelivery() {
             city: "Nice",
             dateCondition: "avant",
             date: "06 dec",
+            manutentionType: "Au pied du véhicule", // Added manutentionType
         },
     ]);
 
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
+
+    const [selectedManutentionTypes, setSelectedManutentionTypes] = useState(
+        []
+    );
 
     // useEffect(() => {
     //     fetchData();
@@ -215,47 +221,6 @@ export default function PackageListingDelivery() {
         };
     }, []);
 
-    const parseCustomDate = (dateString) => {
-        if (typeof dateString !== "string") {
-            console.error("Invalid date format (not a string):", dateString);
-            return null;
-        }
-        const months = {
-            janvier: "01",
-            février: "02",
-            mars: "03",
-            avril: "04",
-            mai: "05",
-            juin: "06",
-            juillet: "07",
-            août: "08",
-            septembre: "09",
-            octobre: "10",
-            novembre: "11",
-            décembre: "12",
-        };
-
-        if (!dateString) {
-            console.error("Invalid date string:", dateString);
-            return null;
-        }
-
-        const [day, month] = dateString.toLowerCase().split(" ");
-        const monthNumber = months[month];
-        if (!monthNumber) {
-            console.error("Invalid month in date string:", dateString);
-            return null;
-        }
-
-        const date = new Date(`2024-${monthNumber}-${day.padStart(2, "0")}`); // assuming the year is 2024
-        if (isNaN(date.getTime())) {
-            console.error("Invalid date:", date);
-            return null;
-        }
-
-        return date;
-    };
-
     const filteredData = cartData.filter((item) => {
         // Ensure all filters are lowercase for case-insensitive comparison
         const cityMatch = city
@@ -297,43 +262,6 @@ export default function PackageListingDelivery() {
         const detourMatch =
             item.distance <= detourDistance || detourDistance === 0;
 
-        const itemDate = parseCustomDate(item.date);
-        if (!itemDate) return false; // Skip invalid dates
-
-        const startDateParsed = new Date(startDate);
-
-        if (
-            isNaN(new Date(endDate).getTime()) ||
-            isNaN(new Date(endDate).getTime())
-        ) {
-            console.error("Invalid startDate or endDate", startDate, endDate);
-            return false;
-        }
-
-        const deliveryDateMatch = (() => {
-            if (item.dateCondition === "") {
-                const startDateParsed = new Date(startDate);
-                return itemDate < startDateParsed;
-            } else if (item.dateCondition === "avant") {
-                const startDateParsed = new Date(startDate);
-                return (
-                    itemDate.toISOString().split("T")[0] ===
-                    startDateParsed.toISOString().split("T")[0]
-                );
-            } else if (
-                item.dateCondition === "entre" &&
-                Array.isArray(item.date)
-            ) {
-                const startDateParsed = new Date(parseCustomDate(item.date[0]));
-                const endDateParsed = new Date(parseCustomDate(item.date[1]));
-                return (
-                    startDateParsed >= new Date(startDate) &&
-                    endDateParsed <= new Date(endDate)
-                );
-            }
-            return true; // If no condition, consider it as true
-        })();
-
         const manutentionMatch =
             (selectedManutentionTypes.includes("Au pied du véhicule") &&
                 item.manutentionType === "Au pied du véhicule") ||
@@ -341,7 +269,7 @@ export default function PackageListingDelivery() {
                 item.manutentionType === "Manutention - 1 personne") ||
             (selectedManutentionTypes.includes("Manutention - 2 personnes") &&
                 item.manutentionType === "Manutention - 2 personnes") ||
-            selectedManutentionTypes.length === 0; // If no manutention type is selected, match all
+            selectedManutentionTypes.length === 0;
 
         return (
             cityMatch &&
@@ -352,7 +280,6 @@ export default function PackageListingDelivery() {
             priceMinMatch &&
             priceMaxMatch &&
             detourMatch &&
-            deliveryDateMatch &&
             manutentionMatch
         );
     });
@@ -532,9 +459,6 @@ export default function PackageListingDelivery() {
                                 setPriceRange={setPriceRange}
                                 selectedManutentionTypes={
                                     selectedManutentionTypes
-                                }
-                                setSelectedManutentionTypes={
-                                    setSelectedManutentionTypes
                                 }
                                 handleCheckboxChange={handleCheckboxChange}
                             />
