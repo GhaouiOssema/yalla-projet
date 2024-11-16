@@ -74,60 +74,177 @@ const FilterSidebar = ({
             <div>
                 <h3 className="font-medium mb-3">Plage de poids (kg)</h3>
                 <div className="flex gap-2">
-                    <input
-                        type="number"
-                        placeholder="Min"
-                        value={weightRange?.min}
-                        onChange={(e) =>
-                            setWeightRange({
-                                ...weightRange,
-                                min: e.target.value,
-                            })
-                        }
-                        className="w-1/2 p-2 border rounded-md"
-                    />
-                    <input
-                        type="number"
-                        placeholder="Max"
-                        value={weightRange?.max}
-                        onChange={(e) =>
-                            setWeightRange({
-                                ...weightRange,
-                                max: e.target.value,
-                            })
-                        }
-                        className="w-1/2 p-2 border rounded-md"
-                    />
+                    {/* Minimum Weight */}
+                    <div className="relative w-1/2">
+                        <input
+                            type="number"
+                            placeholder="Min"
+                            value={weightRange?.min}
+                            onChange={(e) =>
+                                setWeightRange({
+                                    ...weightRange,
+                                    min: e.target.value,
+                                })
+                            }
+                            className="w-full p-2 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-center custom-number-input"
+                        />
+                        <button
+                            type="button"
+                            onClick={() =>
+                                setWeightRange({
+                                    ...weightRange,
+                                    min: Number(weightRange.min || 0) + 1,
+                                })
+                            }
+                            className="absolute top-1/2 right-3 transform -translate-y-1/2 text-base p-1 rounded-full hover:bg-gray-100">
+                            +
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() =>
+                                setWeightRange({
+                                    ...weightRange,
+                                    min: Math.max(
+                                        Number(weightRange.min || 0) - 1,
+                                        0
+                                    ),
+                                })
+                            }
+                            className="absolute top-1/2 left-3 transform -translate-y-1/2 text-base p-1 rounded-full hover:bg-gray-100">
+                            -
+                        </button>
+                    </div>
+
+                    {/* Maximum Weight */}
+                    <div className="relative w-1/2">
+                        <input
+                            type="number"
+                            placeholder="Max"
+                            value={weightRange?.max}
+                            onChange={(e) =>
+                                setWeightRange({
+                                    ...weightRange,
+                                    max: e.target.value,
+                                })
+                            }
+                            className="w-full p-2 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-center custom-number-input"
+                        />
+                        <button
+                            type="button"
+                            onClick={() =>
+                                setWeightRange({
+                                    ...weightRange,
+                                    max: Number(weightRange.max || 0) + 1,
+                                })
+                            }
+                            className="absolute top-1/2 right-3 transform -translate-y-1/2 text-base p-1 rounded-full hover:bg-gray-100">
+                            +
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() =>
+                                setWeightRange({
+                                    ...weightRange,
+                                    max: Math.max(
+                                        Number(weightRange.max || 0) - 1,
+                                        0
+                                    ),
+                                })
+                            }
+                            className="absolute top-1/2 left-3 transform -translate-y-1/2 text-base p-1 rounded-full hover:bg-gray-100">
+                            -
+                        </button>
+                    </div>
                 </div>
             </div>
 
             <div>
                 <h3 className="font-medium mb-3">Plage de prix (€)</h3>
-                <div className="flex gap-2">
-                    <input
-                        type="number"
-                        placeholder="Min"
-                        value={priceRange?.min}
-                        onChange={(e) =>
-                            setPriceRange({
-                                ...priceRange,
-                                min: e.target.value,
-                            })
-                        }
-                        className="w-1/2 p-2 border rounded-md"
-                    />
-                    <input
-                        type="number"
-                        placeholder="Max"
-                        value={priceRange?.max}
-                        onChange={(e) =>
-                            setPriceRange({
-                                ...priceRange,
-                                max: e.target.value,
-                            })
-                        }
-                        className="w-1/2 p-2 border rounded-md"
-                    />
+                <div>
+                    <h3 className="font-medium mb-3">Plage de prix (Dinar)</h3>
+                    <div className="flex gap-2">
+                        {/* Minimum Price */}
+                        <div className="relative w-1/2">
+                            <input
+                                type="number"
+                                placeholder="Min"
+                                value={priceRange?.min}
+                                onChange={(e) =>
+                                    setPriceRange({
+                                        ...priceRange,
+                                        min: e.target.value,
+                                    })
+                                }
+                                className="w-full p-2 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-center custom-number-input"
+                            />
+                            <button
+                                type="button"
+                                onClick={() =>
+                                    setPriceRange({
+                                        ...priceRange,
+                                        min: Number(priceRange.min || 0) + 1,
+                                    })
+                                }
+                                className="absolute top-1/2 right-3 transform -translate-y-1/2 text-base p-1 rounded-full hover:bg-gray-100">
+                                +
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() =>
+                                    setPriceRange({
+                                        ...priceRange,
+                                        min: Math.max(
+                                            Number(priceRange.min || 0) - 1,
+                                            0
+                                        ),
+                                    })
+                                }
+                                className="absolute top-1/2 left-3 transform -translate-y-1/2 text-base p-1 rounded-full hover:bg-gray-100">
+                                -
+                            </button>
+                        </div>
+
+                        {/* Maximum Price */}
+                        <div className="relative w-1/2">
+                            <input
+                                type="number"
+                                placeholder="Max"
+                                value={priceRange?.max}
+                                onChange={(e) =>
+                                    setPriceRange({
+                                        ...priceRange,
+                                        max: e.target.value,
+                                    })
+                                }
+                                className="w-full p-2 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-center custom-number-input"
+                            />
+                            <button
+                                type="button"
+                                onClick={() =>
+                                    setPriceRange({
+                                        ...priceRange,
+                                        max: Number(priceRange.max || 0) + 1,
+                                    })
+                                }
+                                className="absolute top-1/2 right-3 transform -translate-y-1/2 text-base p-1 rounded-full hover:bg-gray-100">
+                                +
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() =>
+                                    setPriceRange({
+                                        ...priceRange,
+                                        max: Math.max(
+                                            Number(priceRange.max || 0) - 1,
+                                            0
+                                        ),
+                                    })
+                                }
+                                className="absolute top-1/2 left-3 transform -translate-y-1/2 text-base p-1 rounded-full hover:bg-gray-100">
+                                -
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -142,7 +259,7 @@ const FilterSidebar = ({
                                         Math.max(0, detourDistance - 5)
                                     )
                                 }
-                                className="p-1 bg-yellow-500 text-white rounded-full hover:bg-yellow-600 transition-colors">
+                                className="p-1 bg-yellow-500 text-white rounded-full hover:bg-gray-100 transition-colors">
                                 <Minus className="h-4 w-4" />
                             </button>
                             <span className="text-sm font-medium">
@@ -154,7 +271,7 @@ const FilterSidebar = ({
                                         Math.min(300, detourDistance + 5)
                                     )
                                 }
-                                className="p-1 bg-yellow-500 text-white rounded-full hover:bg-yellow-600 transition-colors">
+                                className="p-1 bg-yellow-500 text-white rounded-full hover:bg-gray-100 transition-colors">
                                 <Plus className="h-4 w-4" />
                             </button>
                         </div>

@@ -51,3 +51,42 @@
 .scrollbar-hide::-webkit-scrollbar {
     display: none;
 }
+
+/* Hide default arrows */
+.custom-number-input::-webkit-inner-spin-button,
+.custom-number-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.custom-number-input {
+    position: relative;
+    padding-right: 2.5rem; /* Space for custom arrows */
+}
+
+.custom-number-input::after,
+.custom-number-input::before {
+    content: "";
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    background-color: #fbbf24; /* Tailwind yellow-500 */
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.custom-number-input::before {
+    content: "+";
+    top: 0.25rem;
+    right: 0.5rem;
+}
+
+.custom-number-input::after {
+    content: "-";
+    bottom: 0.25rem;
+    right: 0.5rem;
+}

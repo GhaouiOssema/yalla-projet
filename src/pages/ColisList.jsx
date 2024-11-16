@@ -44,7 +44,17 @@ export default function PackageListingDelivery() {
             city: "Paris",
             dateCondition: "",
             date: "15 juin",
-            manutentionType: "Au pied du véhicule", // Added manutentionType
+            manutentionType: "Au pied du véhicule",
+            departure: {
+                city: "Paris",
+                postalCode: "75000",
+                country: "France",
+            },
+            arrival: {
+                city: "Madrid",
+                postalCode: "28000",
+                country: "Espagne",
+            },
         },
         {
             imageUrl:
@@ -62,7 +72,17 @@ export default function PackageListingDelivery() {
             city: "Marseille",
             dateCondition: "",
             date: "20 juin",
-            manutentionType: "Manutention - 1 personne", // Added manutentionType
+            manutentionType: "Manutention - 1 personne",
+            departure: {
+                city: "London",
+                postalCode: "SW1A 1AA",
+                country: "United Kingdom",
+            },
+            arrival: {
+                city: "Berlin",
+                postalCode: "10115",
+                country: "Germany",
+            },
         },
         {
             imageUrl:
@@ -86,7 +106,17 @@ export default function PackageListingDelivery() {
             city: "Lyon",
             dateCondition: "entre",
             date: ["15 juin", "13 nov"],
-            manutentionType: "Manutention - 2 personnes", // Added manutentionType
+            manutentionType: "Manutention - 2 personnes",
+            departure: {
+                city: "New York",
+                postalCode: "10001",
+                country: "USA",
+            },
+            arrival: {
+                city: "Los Angeles",
+                postalCode: "90001",
+                country: "USA",
+            },
         },
         {
             imageUrl:
@@ -109,7 +139,17 @@ export default function PackageListingDelivery() {
             city: "Toulouse",
             dateCondition: "entre",
             date: ["15 nov", "17 nov"],
-            manutentionType: "Manutention - 1 personne", // Added manutentionType
+            manutentionType: "Manutention - 1 personne",
+            departure: {
+                city: "Tokyo",
+                postalCode: "100-0001",
+                country: "Japan",
+            },
+            arrival: {
+                city: "Seoul",
+                postalCode: "04524",
+                country: "South Korea",
+            },
         },
         {
             imageUrl:
@@ -132,7 +172,17 @@ export default function PackageListingDelivery() {
             city: "Bordeaux",
             dateCondition: "avant",
             date: "07 dec",
-            manutentionType: "Manutention - 2 personnes", // Added manutentionType
+            manutentionType: "Manutention - 2 personnes",
+            departure: {
+                city: "Sydney",
+                postalCode: "2000",
+                country: "Australia",
+            },
+            arrival: {
+                city: "Melbourne",
+                postalCode: "3000",
+                country: "Australia",
+            },
         },
         {
             imageUrl:
@@ -155,7 +205,17 @@ export default function PackageListingDelivery() {
             city: "Nice",
             dateCondition: "avant",
             date: "06 dec",
-            manutentionType: "Au pied du véhicule", // Added manutentionType
+            manutentionType: "Au pied du véhicule",
+            departure: {
+                city: "Cape Town",
+                postalCode: "8001",
+                country: "South Africa",
+            },
+            arrival: {
+                city: "Johannesburg",
+                postalCode: "2001",
+                country: "South Africa",
+            },
         },
     ]);
 
@@ -222,9 +282,14 @@ export default function PackageListingDelivery() {
     }, []);
 
     const filteredData = cartData.filter((item) => {
-        // Ensure all filters are lowercase for case-insensitive comparison
         const cityMatch = city
-            ? item.city.toLowerCase().includes(city.toLowerCase())
+            ? [
+                  item.departure.city,
+                  item.departure.country,
+                  item.departure.postalCode,
+              ]
+                  .map((field) => field.toLowerCase())
+                  .some((field) => field.includes(city.toLowerCase()))
             : true;
 
         const tagMatch = selectedCategory
@@ -360,7 +425,7 @@ export default function PackageListingDelivery() {
                                     <MapPin className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                                     <input
                                         type="text"
-                                        placeholder="Indiquer une ville, un lieu..."
+                                        placeholder="Indiquer une ville, un lieu ou une code postal"
                                         value={city}
                                         onChange={(e) =>
                                             setCity(e.target.value)
@@ -566,9 +631,17 @@ export default function PackageListingDelivery() {
 
                         {/* Package Listings */}
                         <div className="space-y-4">
-                            {filteredData.map((item, index) => (
-                                <FilterCard key={index} data={item} />
-                            ))}
+                            {filteredData.length > 0 ? (
+                                filteredData.map((item, idx) => (
+                                    <FilterCard key={idx} data={item} />
+                                ))
+                            ) : (
+                                <div className="text-center text-gray-500 w-full">
+                                    <div className="w-full max-w-[your-card-width] mx-auto">
+                                        Aucun résultat trouvé
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
