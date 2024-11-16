@@ -15,13 +15,22 @@ const FilterSidebar = ({
     setStartDate,
     endDate,
     setEndDate,
-    handleSizeChange,
-    selectedSizes,
+    selectedSizes = [], // Default empty array if undefined
     priceRange,
     setPriceRange,
-    selectedManutentionTypes,
+    selectedManutentionTypes = [], // Default empty array if undefined
     handleCheckboxChange,
+    setSelectedSizes,
 }) => {
+    const handleSizeChange = (size) => {
+        setSelectedSizes(
+            (prevSelectedSizes) =>
+                prevSelectedSizes.includes(size)
+                    ? prevSelectedSizes.filter((s) => s !== size) // Remove size if already selected
+                    : [...prevSelectedSizes, size] // Add size if not already selected
+        );
+    };
+
     return (
         <div className="space-y-6">
             <div>
@@ -53,7 +62,7 @@ const FilterSidebar = ({
                             <input
                                 type="checkbox"
                                 className="appearance-none w-6 h-6 border border-gray-300 rounded checked:bg-yellow-500 checked:border-yellow-500 relative checked:after:content-['✔'] checked:after:absolute checked:after:text-white checked:after:left-1/2 checked:after:top-1/2 checked:after:transform checked:after:-translate-x-1/2 checked:after:-translate-y-1/2"
-                                checked={selectedSizes.includes(size)} // Control the checkbox state
+                                checked={selectedSizes?.includes(size)} // Control the checkbox state
                                 onChange={() => handleSizeChange(size)} // Update state on change
                             />
                             <span>{size}</span>
@@ -98,7 +107,7 @@ const FilterSidebar = ({
                     <input
                         type="number"
                         placeholder="Min"
-                        value={priceRange.min}
+                        value={priceRange?.min}
                         onChange={(e) =>
                             setPriceRange({
                                 ...priceRange,
@@ -110,7 +119,7 @@ const FilterSidebar = ({
                     <input
                         type="number"
                         placeholder="Max"
-                        value={priceRange.max}
+                        value={priceRange?.max}
                         onChange={(e) =>
                             setPriceRange({
                                 ...priceRange,
@@ -272,7 +281,7 @@ const FilterSidebar = ({
                     <label className="flex items-center gap-2">
                         <input
                             type="checkbox"
-                            checked={selectedManutentionTypes.includes(
+                            checked={selectedManutentionTypes?.includes(
                                 "Manutention - 1 personne"
                             )}
                             onChange={(e) =>
@@ -287,7 +296,7 @@ const FilterSidebar = ({
                     </label>
                     <label className="flex items-center gap-2">
                         <input
-                            checked={selectedManutentionTypes.includes(
+                            checked={selectedManutentionTypes?.includes(
                                 "Manutention - 2 personnes"
                             )}
                             onChange={(e) =>

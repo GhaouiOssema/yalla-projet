@@ -294,8 +294,8 @@ export default function PackageListingDelivery() {
     };
 
     return (
-        <div className="flex justify-center w-full ">
-            <div className="min-h-screen bg-white ">
+        <div className="px-0 lg:px-20 w-full ">
+            <div className="h-full bg-white ">
                 {/* Search Header */}
                 <div className="border-b ">
                     <div className="w-full px-6 py-8">
@@ -416,7 +416,7 @@ export default function PackageListingDelivery() {
                     </div>
                 </div>
 
-                <div className="container mx-auto px-4 py-6">
+                <div className=" px-4 py-6">
                     <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-6 ">
                         {/* Filters Sidebar for Desktop */}
                         <div className="hidden md:block">
@@ -461,6 +461,7 @@ export default function PackageListingDelivery() {
                                     selectedManutentionTypes
                                 }
                                 handleCheckboxChange={handleCheckboxChange}
+                                setSelectedSizes={setSelectedSizes}
                             />
                         </div>
 
@@ -488,7 +489,59 @@ export default function PackageListingDelivery() {
                                                 <X className="h-6 w-6" />
                                             </button>
                                         </div>
-                                        <FilterSidebar />
+                                        <FilterSidebar
+                                            selectedCategory={selectedCategory}
+                                            setSelectedCategory={
+                                                setSelectedCategory
+                                            }
+                                            weightRange={weightRange}
+                                            setWeightRange={setWeightRange}
+                                            routeType={routeType}
+                                            setRouteType={setRouteType}
+                                            city={city}
+                                            setCity={setCity}
+                                            radius={radius}
+                                            setRadius={setRadius}
+                                            departure={departure}
+                                            setDeparture={setDeparture}
+                                            arrival={arrival}
+                                            setArrival={setArrival}
+                                            stops={stops}
+                                            setStops={setStops}
+                                            detourDistance={detourDistance}
+                                            setDetourDistance={
+                                                setDetourDistance
+                                            }
+                                            deliveryDateType={deliveryDateType}
+                                            setDeliveryDateType={
+                                                setDeliveryDateType
+                                            }
+                                            startDate={startDate}
+                                            setStartDate={setStartDate}
+                                            endDate={endDate}
+                                            setEndDate={setEndDate}
+                                            handleAddStop={handleAddStop}
+                                            handleStopChange={handleStopChange}
+                                            handleDeleteStop={handleDeleteStop}
+                                            handleRadiusChange={
+                                                handleRadiusChange
+                                            }
+                                            handleDetourDistanceChange={
+                                                handleDetourDistanceChange
+                                            }
+                                            filterRef={filterRef}
+                                            selectedSizes={selectedSizes}
+                                            handleSizeChange={handleSizeChange}
+                                            priceRange={priceRange}
+                                            setPriceRange={setPriceRange}
+                                            selectedManutentionTypes={
+                                                selectedManutentionTypes
+                                            }
+                                            handleCheckboxChange={
+                                                handleCheckboxChange
+                                            }
+                                            setSelectedSizes={setSelectedSizes}
+                                        />
                                         <div className="flex gap-2 mt-4">
                                             <button
                                                 className="flex-1 px-4 h-10 bg-yellow-500 text-white text-base rounded-full font-semibold hover:bg-yellow-600 transition-colors"
@@ -513,11 +566,8 @@ export default function PackageListingDelivery() {
 
                         {/* Package Listings */}
                         <div className="space-y-4">
-                            {(filteredData.length > 0
-                                ? filteredData
-                                : cartData
-                            ).map((item, idx) => (
-                                <FilterCard key={idx} data={item} />
+                            {filteredData.map((item, index) => (
+                                <FilterCard key={index} data={item} />
                             ))}
                         </div>
                     </div>
